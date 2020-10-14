@@ -20,9 +20,10 @@ public class MusicAnalysisModel {
 	private Double seekPositionMs;
 	private Double nanoTime;
 	private String playerEventType;
-	private Integer mAlbumID;
+	private String uiEventType;
+	private Long mAlbumID;
 	private String mAlbumName;
-	private Integer mArtistID;
+	private Long mArtistID;
 	private String mArtistName;
 	private String mBitrateLabel;
 	private Double mDateAdded;
@@ -41,7 +42,8 @@ public class MusicAnalysisModel {
 	private String mSampleRateLabel;
 	private Integer mTrack;
 	private Integer mYear;
-
+	private Double startTime;
+	private Double elapsedTime;
 	public SongMetaDataModel song;
 
 	public void setmUserId(String mUserId) {
@@ -113,10 +115,10 @@ public class MusicAnalysisModel {
 	}
 
 	public static final String[] CSV_HEADER = { "User ID", "Current Time (nanoseconds)", "Nano Time (milliseconds)",
-			"Seek Position (milliseconds)", "Player Event Type", "Album ID", "Album Name", "Artist ID", "Artist Name",
+			"Seek Position (milliseconds)", "Player Event Type","UI Event Type", "Album ID", "Album Name", "Artist ID", "Artist Name",
 			"Bit Rate", "Date Added", "Disc Number", "Duration", "File Size", "File Format", "Song ID", "Last Played",
 			"Song Name", "File Path", "Play Count", "Play List ID", "Play List Play Order", "Podcast", "Simple Rate",
-			"Track", "Year" };
+			"Track", "Year","Start Time","Elapsed Time" };
 
 	public String getUserId() {
 		return mUserId;
@@ -138,6 +140,16 @@ public class MusicAnalysisModel {
 		return playerEventType;
 	}
 
+	
+	
+	public String getUiEventType() {
+		return uiEventType;
+	}
+
+	public void setUiEventType(String uiEventType) {
+		this.uiEventType = uiEventType;
+	}
+
 	public void setCurrentTimeMs(Double currentTimeMs) {
 		this.currentTimeMs = currentTimeMs;
 	}
@@ -154,7 +166,7 @@ public class MusicAnalysisModel {
 		this.playerEventType = playerEventType;
 	}
 
-	public void setmAlbumID(Integer mAlbumID) {
+	public void setmAlbumID(Long mAlbumID) {
 		this.mAlbumID = mAlbumID;
 	}
 
@@ -162,7 +174,7 @@ public class MusicAnalysisModel {
 		this.mAlbumName = mAlbumName;
 	}
 
-	public void setmArtistID(Integer mArtistID) {
+	public void setmArtistID(Long mArtistID) {
 		this.mArtistID = mArtistID;
 	}
 
@@ -174,15 +186,33 @@ public class MusicAnalysisModel {
 		this.mBitrateLabel = mBitrateLabel;
 	}
 
+	public Double getElapsedTime() {
+		return elapsedTime;
+	}
+
+	public void setElapsedTime(Double elapsedTime) {
+		this.elapsedTime = elapsedTime;
+	}
+
+	public Double getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Double startTime) {
+		this.startTime = startTime;
+	}
+	
 	public String[] toStringArray() {
 		return new String[] { mUserId, StringUtils.valueOf(currentTimeMs), StringUtils.valueOf(nanoTime),
-				StringUtils.valueOf(seekPositionMs), playerEventType, StringUtils.valueOf(mAlbumID), mAlbumName,
+				StringUtils.valueOf(seekPositionMs), playerEventType,uiEventType, StringUtils.valueOf(mAlbumID), mAlbumName,
 				StringUtils.valueOf(mArtistID), mArtistName, mBitrateLabel, StringUtils.valueOf(mDateAdded),
 				StringUtils.valueOf(mDiscNumber), StringUtils.valueOf(mDuration), mFileSizeLabel, mFormatLabel,
 				StringUtils.valueOf(mId), StringUtils.valueOf(mLastPlayed), mName, mPath,
 				StringUtils.valueOf(mPlayCount), StringUtils.valueOf(mPlaylistID),
 				StringUtils.valueOf(mPlaylistPlayOrder), StringUtils.valueOf(mPodCast), mSampleRateLabel,
-				StringUtils.valueOf(mTrack), StringUtils.valueOf(mYear), };
+				StringUtils.valueOf(mTrack), StringUtils.valueOf(mYear),StringUtils.valueOf(startTime),StringUtils.valueOf(elapsedTime) };
 	}
+
+	
 
 }

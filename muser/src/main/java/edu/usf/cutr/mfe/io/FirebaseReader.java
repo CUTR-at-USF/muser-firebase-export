@@ -52,4 +52,9 @@ public class FirebaseReader {
 				FirebaseConstants.FIREBASE_PLAYER_EVENTS_FOLDER);
 	}
 
+	public List<QueryDocumentSnapshot> getAllUserUIInfoById(String userId) {
+		return FirebaseIOUtils.getAllRecordIdsByUserIdAndFolder(mFirestoreDB, userId,
+				FirebaseConstants.FIREBASE_UI_EVENTS_FOLDER);
+	}
+	
 }

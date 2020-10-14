@@ -6,9 +6,9 @@ import edu.usf.cutr.mfe.utils.StringUtils;
 
 public class SongMetaDataModel {
 
-	private Integer albumID;
+	private Long albumID;
 	private String albumName;
-	private Integer artistID;
+	private Long artistID;
 	private String artistName;
 	private String bitrateLabel;
 	private Double dateAdded;
@@ -28,7 +28,7 @@ public class SongMetaDataModel {
 	private Integer track;
 	private Integer year;
 
-	public Integer getAlbumID() {
+	public Long getAlbumID() {
 		return albumID;
 	}
 
@@ -36,7 +36,7 @@ public class SongMetaDataModel {
 		return albumName;
 	}
 
-	public Integer getArtistID() {
+	public Long getArtistID() {
 		return artistID;
 	}
 
@@ -92,7 +92,7 @@ public class SongMetaDataModel {
 		return year;
 	}
 
-	public void setAlbumID(Integer albumID) {
+	public void setAlbumID(Long albumID) {
 		this.albumID = albumID;
 	}
 
@@ -100,7 +100,7 @@ public class SongMetaDataModel {
 		this.albumName = albumName;
 	}
 
-	public void setArtistID(Integer artistID) {
+	public void setArtistID(Long artistID) {
 		this.artistID = artistID;
 	}
 

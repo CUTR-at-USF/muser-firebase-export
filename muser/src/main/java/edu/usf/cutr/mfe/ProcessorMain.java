@@ -28,7 +28,7 @@ public class ProcessorMain {
            System.err.println("Invalid command line options");
        }
 		//programOptions.setKeyFilePath();
-	    //programOptions.setUserId(null);
+	   // programOptions.setUserId(null);
 		System.out.println("Analysis started!");
 		try {
 			new MuserMusicDataAnalysisManager().processData();
@@ -43,6 +43,7 @@ public class ProcessorMain {
 		Options options = new Options();
 		options.addOption(ProgramOptions.USER_ID, true, "Only run the analysis for specific user");
 		options.addOption(ProgramOptions.KEY_FILE, true, "Admin key file of the Firebase account");
+		
 		return options;
 	}
 }

@@ -27,7 +27,8 @@ public class MuserMusicDataAnalysisManager {
             analyzeAllUsersMusicData();
         } else {
             // analyze specific user data
-            processUserById(mProgramOptions.getUserId());
+        	processUserByIdForPlayerEvent(mProgramOptions.getUserId());
+        	processUserByIdForUiEvent(mProgramOptions.getUserId());
         }
         //close the csv file
         mCSVFileWriter.closeWriter();
@@ -35,10 +36,11 @@ public class MuserMusicDataAnalysisManager {
 	private void analyzeAllUsersMusicData() {
         List<QueryDocumentSnapshot> allUserIds = mFirebaseReader.getAllUserIds();
         for (QueryDocumentSnapshot doc : allUserIds) {
-            processUserById(doc.getId());
+            processUserByIdForPlayerEvent(doc.getId());
+            processUserByIdForUiEvent(doc.getId());
         }
     }
-	private void processUserById(String userId) {
+	private void processUserByIdForPlayerEvent(String userId) {
         List<QueryDocumentSnapshot> userInfoById = new ArrayList<>(mFirebaseReader.getAllUserInfoById(userId));
 		    for (QueryDocumentSnapshot doc : userInfoById) {
 		    	    MusicAnalysisModel tbr1 = new MusicAnalysisModel(userId);
@@ -49,7 +51,7 @@ public class MuserMusicDataAnalysisManager {
 			        tbr1.setSeekPositionMs(tbr.getSeekPositionMs());
 			        tbr1.setmAlbumID(tbr.song.getAlbumID());
 			        tbr1.setmAlbumName(tbr.song.getAlbumName());
-			        tbr1.setmArtistID(tbr.song.getAlbumID());
+			        tbr1.setmArtistID(tbr.song.getArtistID());
 			        tbr1.setmArtistName(tbr.song.getAlbumName());
 			        tbr1.setmBitrateLabel(tbr.song.getBitrateLabel());
 			        tbr1.setmDateAdded(tbr.song.getDateAdded());
@@ -70,6 +72,45 @@ public class MuserMusicDataAnalysisManager {
 			        tbr1.setmYear(tbr.song.getYear());
 			        musicAnalysisList.add(tbr1);
 			        mCSVFileWriter.appendAllToCsV(musicAnalysisList);
+			        musicAnalysisList.clear();
+			       
+	        }
+	}
+	private void processUserByIdForUiEvent(String userId) {
+        List<QueryDocumentSnapshot> userInfoById = new ArrayList<>(mFirebaseReader.getAllUserUIInfoById(userId));
+		    for (QueryDocumentSnapshot doc : userInfoById) {
+		    	    MusicAnalysisModel tbr1 = new MusicAnalysisModel(userId);
+			        MusicAnalysisModel tbr = doc.toObject(MusicAnalysisModel.class);
+			        tbr1.setCurrentTimeMs(tbr.getCurrentTimeMs());
+			        tbr1.setNanoTime(tbr.getNanoTime());
+			        tbr1.setUiEventType(tbr.getUiEventType());
+			        tbr1.setSeekPositionMs(tbr.getSeekPositionMs());
+			        tbr1.setmAlbumID(tbr.song.getAlbumID());
+			        tbr1.setmAlbumName(tbr.song.getAlbumName());
+			        tbr1.setmArtistID(tbr.song.getArtistID());
+			        tbr1.setmArtistName(tbr.song.getAlbumName());
+			        tbr1.setmBitrateLabel(tbr.song.getBitrateLabel());
+			        tbr1.setmDateAdded(tbr.song.getDateAdded());
+			        tbr1.setmDiscNumber(tbr.song.getDiscNumber());
+			        tbr1.setmDuration(tbr.song.getDuration());
+			        tbr1.setmFileSizeLabel(tbr.song.getFileSizeLabel());
+			        tbr1.setmFormatLabel(tbr.song.getFormatLabel());
+			        tbr1.setmId(tbr.song.getId());
+			        tbr1.setmLastPlayed(tbr.song.getLastPlayed());
+			        tbr1.setmName(tbr.song.getName());
+			        tbr1.setmPath(tbr.song.getPath());
+			        tbr1.setmPlayCount(tbr.song.getPlayCount());
+			        tbr1.setmPlaylistID(tbr.song.getPlaylistID());
+			        tbr1.setmPlaylistPlayOrder(tbr.song.getPlaylistPlayOrder());
+			        tbr1.setmPodCast(tbr.song.getPodCast());
+			        tbr1.setmSampleRateLabel(tbr.song.getSampleRateLabel());
+			        tbr1.setmTrack(tbr.song.getTrack());
+			        tbr1.setmYear(tbr.song.getYear());
+			        tbr1.setStartTime(tbr.getStartTime());
+			        tbr1.setElapsedTime(tbr.getElapsedTime());
+			        musicAnalysisList.add(tbr1);
+			        mCSVFileWriter.appendAllToCsV(musicAnalysisList);
+			        musicAnalysisList.clear();
 			       
 	        }
 	}
