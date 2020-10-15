@@ -1,3 +1,4 @@
+README.md
 muser-firebase-export Build Status
 
 Java application to process Muser Music Analysis. The data collected by Muser and stored in Firebase Firestore.
@@ -20,7 +21,7 @@ Additional Optional Command Line Arguments
 License
 
 /*
- * Copyright (C) 2019-2020 University of South Florida
+ * Copyright (C) 2019 University of South Florida
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
