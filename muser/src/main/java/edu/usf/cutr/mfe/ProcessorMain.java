@@ -18,24 +18,27 @@ public class ProcessorMain {
 
         CommandLineParser parser = new DefaultParser();
 
-        try {
-            CommandLine cmd = parser.parse(options, args);
 
-            if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
-                programOptions.setKeyFilePath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
-            } else {
-                System.err.println("Firebase admin key is not provided. \n" +
-                        "Provide an admin key using -keyFile path/to/file.json");
-                return;
-            }
-
-            if (cmd.hasOption(ProgramOptions.USER_ID)) {
-                programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
-            }
-
-        } catch (ParseException e) {
-            System.err.println("Invalid command line options");
-        }
+//      try {
+//      CommandLine cmd = parser.parse(options, args);
+//
+//      if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
+//          programOptions.setKeyFilePath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
+//      } else {
+//          System.err.println("Firebase admin key is not provided. \n" +
+//                  "Provide an admin key using -keyFile path/to/file.json");
+//          return;
+//      }
+//
+//      if (cmd.hasOption(ProgramOptions.USER_ID)) {
+//          programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
+//      }
+//
+//  } catch (ParseException e) {
+//      System.err.println("Invalid command line options");
+//  }
+  programOptions.setKeyFilePath("/Users/pradeepipol/Music/RA-OCTOBER/muser-1d7ac-firebase-adminsdk-stkuo-1a5e1fccc4.json");
+	programOptions.setUserId("3H1zVpV0LPZeYOGGxFNNHK68TRf1");
         System.out.println("Analysis started!");
 
         try {
