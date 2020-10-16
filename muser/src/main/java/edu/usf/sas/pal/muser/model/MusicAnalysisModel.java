@@ -1,14 +1,16 @@
-package edu.usf.cutr.mfe.model;
-import edu.usf.cutr.mfe.model.SongMetaDataModel;
-import edu.usf.cutr.mfe.utils.StringUtils;
+package edu.usf.sas.pal.muser.model;
+
+import edu.usf.sas.pal.muser.utils.StringUtils;
 
 public class MusicAnalysisModel {
 
 	public MusicAnalysisModel() {
 	}
 
-	public MusicAnalysisModel(String userId) {
+	public MusicAnalysisModel(String userId,String record_ID) {
 		mUserId = userId;
+		setmRecord_ID(record_ID);
+		
 	}
 
 	public static String[] getCsvHeader() {
@@ -23,6 +25,7 @@ public class MusicAnalysisModel {
 	private String uiEventType;
 	private Long mAlbumID;
 	private String mAlbumName;
+	private String mRecord_ID;
 	private Long mArtistID;
 	private String mArtistName;
 	private String mBitrateLabel;
@@ -45,11 +48,20 @@ public class MusicAnalysisModel {
 	private Double startTime;
 	private Double elapsedTime;
 	public SongMetaDataModel song;
+	
 
 	public void setmUserId(String mUserId) {
 		this.mUserId = mUserId;
 	}
 
+	public String getmRecord_ID() {
+		return mRecord_ID;
+	}
+
+	public void setmRecord_ID(String mRecord_ID) {
+		this.mRecord_ID = mRecord_ID;
+	}
+	
 	public void setmDateAdded(Double mDateAdded) {
 		this.mDateAdded = mDateAdded;
 	}
@@ -115,7 +127,7 @@ public class MusicAnalysisModel {
 	}
 
 	public static final String[] CSV_HEADER = { "User ID", "Current Time (nanoseconds)", "Nano Time (milliseconds)",
-			"Seek Position (milliseconds)", "Player Event Type","UI Event Type", "Album ID", "Album Name", "Artist ID", "Artist Name",
+			"Seek Position (milliseconds)","Record ID", "Player Event Type","UI Event Type", "Album ID", "Album Name", "Artist ID", "Artist Name",
 			"Bit Rate", "Date Added", "Disc Number", "Duration", "File Size", "File Format", "Song ID", "Last Played",
 			"Song Name", "File Path", "Play Count", "Play List ID", "Play List Play Order", "Podcast", "Simple Rate",
 			"Track", "Year","Start Time","Elapsed Time" };
@@ -204,7 +216,7 @@ public class MusicAnalysisModel {
 	
 	public String[] toStringArray() {
 		return new String[] { mUserId, StringUtils.valueOf(currentTimeMs), StringUtils.valueOf(nanoTime),
-				StringUtils.valueOf(seekPositionMs), playerEventType,uiEventType, StringUtils.valueOf(mAlbumID), mAlbumName,
+				StringUtils.valueOf(seekPositionMs),mRecord_ID, playerEventType,uiEventType, StringUtils.valueOf(mAlbumID), mAlbumName,
 				StringUtils.valueOf(mArtistID), mArtistName, mBitrateLabel, StringUtils.valueOf(mDateAdded),
 				StringUtils.valueOf(mDiscNumber), StringUtils.valueOf(mDuration), mFileSizeLabel, mFormatLabel,
 				StringUtils.valueOf(mId), StringUtils.valueOf(mLastPlayed), mName, mPath,
@@ -212,6 +224,10 @@ public class MusicAnalysisModel {
 				StringUtils.valueOf(mPlaylistPlayOrder), StringUtils.valueOf(mPodCast), mSampleRateLabel,
 				StringUtils.valueOf(mTrack), StringUtils.valueOf(mYear),StringUtils.valueOf(startTime),StringUtils.valueOf(elapsedTime) };
 	}
+
+	
+
+	
 
 	
 
