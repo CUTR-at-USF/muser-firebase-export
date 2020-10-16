@@ -43,75 +43,55 @@ public class MuserMusicDataAnalysisManager {
 	private void processUserByIdForPlayerEvent(String userId) {
         List<QueryDocumentSnapshot> userInfoById = new ArrayList<>(mFirebaseReader.getAllUserInfoById(userId));
 		    for (QueryDocumentSnapshot doc : userInfoById) {
-		    	    MusicAnalysisModel tbr1 = new MusicAnalysisModel(userId);
-			        MusicAnalysisModel tbr = doc.toObject(MusicAnalysisModel.class);
-			        tbr1.setCurrentTimeMs(tbr.getCurrentTimeMs());
-			        tbr1.setNanoTime(tbr.getNanoTime());
-			        tbr1.setPlayerEventType(tbr.getPlayerEventType());
-			        tbr1.setSeekPositionMs(tbr.getSeekPositionMs());
-			        tbr1.setmAlbumID(tbr.song.getAlbumID());
-			        tbr1.setmAlbumName(tbr.song.getAlbumName());
-			        tbr1.setmArtistID(tbr.song.getArtistID());
-			        tbr1.setmArtistName(tbr.song.getAlbumName());
-			        tbr1.setmBitrateLabel(tbr.song.getBitrateLabel());
-			        tbr1.setmDateAdded(tbr.song.getDateAdded());
-			        tbr1.setmDiscNumber(tbr.song.getDiscNumber());
-			        tbr1.setmDuration(tbr.song.getDuration());
-			        tbr1.setmFileSizeLabel(tbr.song.getFileSizeLabel());
-			        tbr1.setmFormatLabel(tbr.song.getFormatLabel());
-			        tbr1.setmId(tbr.song.getId());
-			        tbr1.setmLastPlayed(tbr.song.getLastPlayed());
-			        tbr1.setmName(tbr.song.getName());
-			        tbr1.setmPath(tbr.song.getPath());
-			        tbr1.setmPlayCount(tbr.song.getPlayCount());
-			        tbr1.setmPlaylistID(tbr.song.getPlaylistID());
-			        tbr1.setmPlaylistPlayOrder(tbr.song.getPlaylistPlayOrder());
-			        tbr1.setmPodCast(tbr.song.getPodCast());
-			        tbr1.setmSampleRateLabel(tbr.song.getSampleRateLabel());
-			        tbr1.setmTrack(tbr.song.getTrack());
-			        tbr1.setmYear(tbr.song.getYear());
-			        musicAnalysisList.add(tbr1);
-			        mCSVFileWriter.appendAllToCsV(musicAnalysisList);
-			        musicAnalysisList.clear();
+		    	    MusicAnalysisModel mam1 = new MusicAnalysisModel(userId);
+			        MusicAnalysisModel mam = doc.toObject(MusicAnalysisModel.class);
+			        processSetterForUiEventAndPlayerevenets(mam1,mam);
 			       
 	        }
 	}
 	private void processUserByIdForUiEvent(String userId) {
         List<QueryDocumentSnapshot> userInfoById = new ArrayList<>(mFirebaseReader.getAllUserUIInfoById(userId));
 		    for (QueryDocumentSnapshot doc : userInfoById) {
-		    	    MusicAnalysisModel tbr1 = new MusicAnalysisModel(userId);
-			        MusicAnalysisModel tbr = doc.toObject(MusicAnalysisModel.class);
-			        tbr1.setCurrentTimeMs(tbr.getCurrentTimeMs());
-			        tbr1.setNanoTime(tbr.getNanoTime());
-			        tbr1.setUiEventType(tbr.getUiEventType());
-			        tbr1.setSeekPositionMs(tbr.getSeekPositionMs());
-			        tbr1.setmAlbumID(tbr.song.getAlbumID());
-			        tbr1.setmAlbumName(tbr.song.getAlbumName());
-			        tbr1.setmArtistID(tbr.song.getArtistID());
-			        tbr1.setmArtistName(tbr.song.getAlbumName());
-			        tbr1.setmBitrateLabel(tbr.song.getBitrateLabel());
-			        tbr1.setmDateAdded(tbr.song.getDateAdded());
-			        tbr1.setmDiscNumber(tbr.song.getDiscNumber());
-			        tbr1.setmDuration(tbr.song.getDuration());
-			        tbr1.setmFileSizeLabel(tbr.song.getFileSizeLabel());
-			        tbr1.setmFormatLabel(tbr.song.getFormatLabel());
-			        tbr1.setmId(tbr.song.getId());
-			        tbr1.setmLastPlayed(tbr.song.getLastPlayed());
-			        tbr1.setmName(tbr.song.getName());
-			        tbr1.setmPath(tbr.song.getPath());
-			        tbr1.setmPlayCount(tbr.song.getPlayCount());
-			        tbr1.setmPlaylistID(tbr.song.getPlaylistID());
-			        tbr1.setmPlaylistPlayOrder(tbr.song.getPlaylistPlayOrder());
-			        tbr1.setmPodCast(tbr.song.getPodCast());
-			        tbr1.setmSampleRateLabel(tbr.song.getSampleRateLabel());
-			        tbr1.setmTrack(tbr.song.getTrack());
-			        tbr1.setmYear(tbr.song.getYear());
-			        tbr1.setStartTime(tbr.getStartTime());
-			        tbr1.setElapsedTime(tbr.getElapsedTime());
-			        musicAnalysisList.add(tbr1);
-			        mCSVFileWriter.appendAllToCsV(musicAnalysisList);
-			        musicAnalysisList.clear();
+		    	    MusicAnalysisModel mam1 = new MusicAnalysisModel(userId);
+			        MusicAnalysisModel mam = doc.toObject(MusicAnalysisModel.class);
+			        processSetterForUiEventAndPlayerevenets(mam1,mam);
+			        
 			       
 	        }
+	}
+	
+	private void processSetterForUiEventAndPlayerevenets(MusicAnalysisModel mam1,MusicAnalysisModel tbr) {
+		//System.out.print(doc.getId());
+		mam1.setCurrentTimeMs(tbr.getCurrentTimeMs());
+		mam1.setNanoTime(tbr.getNanoTime());
+		mam1.setPlayerEventType(tbr.getPlayerEventType());
+		mam1.setUiEventType(tbr.getUiEventType());
+		mam1.setSeekPositionMs(tbr.getSeekPositionMs());
+		mam1.setmAlbumID(tbr.song.getAlbumID());
+		mam1.setmAlbumName(tbr.song.getAlbumName());
+		mam1.setmArtistID(tbr.song.getArtistID());
+		mam1.setmArtistName(tbr.song.getAlbumName());
+		mam1.setmBitrateLabel(tbr.song.getBitrateLabel());
+		mam1.setmDateAdded(tbr.song.getDateAdded());
+		mam1.setmDiscNumber(tbr.song.getDiscNumber());
+		mam1.setmDuration(tbr.song.getDuration());
+		mam1.setmFileSizeLabel(tbr.song.getFileSizeLabel());
+		mam1.setmFormatLabel(tbr.song.getFormatLabel());
+		mam1.setmId(tbr.song.getId());
+		mam1.setmLastPlayed(tbr.song.getLastPlayed());
+		mam1.setmName(tbr.song.getName());
+		mam1.setmPath(tbr.song.getPath());
+		mam1.setmPlayCount(tbr.song.getPlayCount());
+		mam1.setmPlaylistID(tbr.song.getPlaylistID());
+		mam1.setmPlaylistPlayOrder(tbr.song.getPlaylistPlayOrder());
+		mam1.setmPodCast(tbr.song.getPodCast());
+		mam1.setmSampleRateLabel(tbr.song.getSampleRateLabel());
+        mam1.setmTrack(tbr.song.getTrack());
+        mam1.setmYear(tbr.song.getYear());
+        mam1.setStartTime(tbr.getStartTime());
+        mam1.setElapsedTime(tbr.getElapsedTime());
+        musicAnalysisList.add(mam1);
+        mCSVFileWriter.appendAllToCsV(musicAnalysisList);
+        musicAnalysisList.clear();
 	}
 }
