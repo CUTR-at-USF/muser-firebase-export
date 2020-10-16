@@ -1,8 +1,8 @@
-package edu.usf.cutr.mfe;
+package edu.usf.sas.pal.muser;
 
-import edu.usf.cutr.mfe.exception.FirebaseFileNotInitializedException;
-import edu.usf.cutr.mfe.manager.MuserMusicDataAnalysisManager;
-import edu.usf.cutr.mfe.options.ProgramOptions;
+import edu.usf.sas.pal.muser.exception.FirebaseFileNotInitializedException;
+import edu.usf.sas.pal.muser.manager.MuserMusicDataAnalysisManager;
+import edu.usf.sas.pal.muser.options.ProgramOptions;
 import org.apache.commons.cli.*;
 
 /**
@@ -18,27 +18,21 @@ public class ProcessorMain {
 
         CommandLineParser parser = new DefaultParser();
 
-
-//      try {
-//      CommandLine cmd = parser.parse(options, args);
-//
-//      if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
-//          programOptions.setKeyFilePath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
-//      } else {
-//          System.err.println("Firebase admin key is not provided. \n" +
-//                  "Provide an admin key using -keyFile path/to/file.json");
-//          return;
-//      }
-//
-//      if (cmd.hasOption(ProgramOptions.USER_ID)) {
-//          programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
-//      }
-//
-//  } catch (ParseException e) {
-//      System.err.println("Invalid command line options");
-//  }
-  programOptions.setKeyFilePath("/Users/pradeepipol/Music/RA-OCTOBER/muser-1d7ac-firebase-adminsdk-stkuo-1a5e1fccc4.json");
-	programOptions.setUserId("3H1zVpV0LPZeYOGGxFNNHK68TRf1");
+        try {
+            CommandLine cmd = parser.parse(options, args);
+            if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
+                programOptions.setKeyFilePath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
+            } else {
+                System.err.println("Firebase admin key is not provided. \n" +
+                        "Provide an admin key using -keyFile path/to/file.json");
+                return;
+            }
+            if (cmd.hasOption(ProgramOptions.USER_ID)) {
+                programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
+            }
+        } catch (ParseException e) {
+            System.err.println("Invalid command line options");
+        }
         System.out.println("Analysis started!");
 
         try {

@@ -1,17 +1,21 @@
-package edu.usf.cutr.mfe.options;
+package edu.usf.sas.pal.muser.options;
+
 public class ProgramOptions {
-	private static ProgramOptions sProgramOptions = null;
+	private static ProgramOptions programOptions = null;
+	
 	private ProgramOptions() {
 	}
+	
 	public static final String KEY_FILE = "keyFile";
 	public static final String USER_ID = "userId";
 	private String mKeyFilePath;
 	private String mUserId;
+	
 	public static ProgramOptions getInstance() {
-		if (sProgramOptions == null) {
-			sProgramOptions = new ProgramOptions();
+		if (programOptions == null) {
+			programOptions = new ProgramOptions();
 		}
-		return sProgramOptions;
+		return programOptions;
 	}
 
 	public String getKeyFilePath() {
@@ -31,5 +35,4 @@ public class ProgramOptions {
 		mUserId = userId;
 		return this;
 	}
-
 }

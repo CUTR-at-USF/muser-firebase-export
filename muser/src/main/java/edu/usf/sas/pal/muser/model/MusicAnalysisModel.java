@@ -4,231 +4,221 @@ import edu.usf.sas.pal.muser.utils.StringUtils;
 
 public class MusicAnalysisModel {
 
-	public MusicAnalysisModel() {
-	}
+    public MusicAnalysisModel() {
+    }
 
-	public MusicAnalysisModel(String userId,String record_ID) {
-		mUserId = userId;
-		setmRecord_ID(record_ID);
-		
-	}
+    public MusicAnalysisModel(String userId, String record_ID) {
+        mUserId = userId;
+        setmRecord_ID(record_ID);
 
-	public static String[] getCsvHeader() {
-		return CSV_HEADER;
-	}
+    }
 
-	private String mUserId;
-	private Double currentTimeMs;
-	private Double seekPositionMs;
-	private Double nanoTime;
-	private String playerEventType;
-	private String uiEventType;
-	private Long mAlbumID;
-	private String mAlbumName;
-	private String mRecord_ID;
-	private Long mArtistID;
-	private String mArtistName;
-	private String mBitrateLabel;
-	private Double mDateAdded;
-	private Double mDiscNumber;
-	private Double mDuration;
-	private String mFileSizeLabel;
-	private String mFormatLabel;
-	private Integer mId;
-	private Double mLastPlayed;
-	private String mName;
-	private String mPath;
-	private Integer mPlayCount;
-	private Integer mPlaylistID;
-	private Integer mPlaylistPlayOrder;
-	private Boolean mPodCast;
-	private String mSampleRateLabel;
-	private Integer mTrack;
-	private Integer mYear;
-	private Double startTime;
-	private Double elapsedTime;
-	public SongMetaDataModel song;
-	
+    public static String[] getCsvHeader() {
+        return CSV_HEADER;
+    }
 
-	public void setmUserId(String mUserId) {
-		this.mUserId = mUserId;
-	}
+    private String mUserId;
+    private Double currentTimeMs;
+    private Double seekPositionMs;
+    private Double nanoTime;
+    private String playerEventType;
+    private String uiEventType;
+    private Long mAlbumID;
+    private String mAlbumName;
+    private String mRecord_ID;
+    private Long mArtistID;
+    private String mArtistName;
+    private String mBitrateLabel;
+    private Double mDateAdded;
+    private Double mDiscNumber;
+    private Double mDuration;
+    private String mFileSizeLabel;
+    private String mFormatLabel;
+    private Integer mId;
+    private Double mLastPlayed;
+    private String mName;
+    private String mPath;
+    private Integer mPlayCount;
+    private Integer mPlaylistID;
+    private Integer mPlaylistPlayOrder;
+    private Boolean mPodCast;
+    private String mSampleRateLabel;
+    private Integer mTrack;
+    private Integer mYear;
+    private Double startTime;
+    private Double elapsedTime;
+    public SongMetaDataModel song;
 
-	public String getmRecord_ID() {
-		return mRecord_ID;
-	}
+    public void setmUserId(String mUserId) {
+        this.mUserId = mUserId;
+    }
 
-	public void setmRecord_ID(String mRecord_ID) {
-		this.mRecord_ID = mRecord_ID;
-	}
-	
-	public void setmDateAdded(Double mDateAdded) {
-		this.mDateAdded = mDateAdded;
-	}
+    public String getmRecord_ID() {
+        return mRecord_ID;
+    }
 
-	public void setmDiscNumber(Double mDiscNumber) {
-		this.mDiscNumber = mDiscNumber;
-	}
+    public void setmRecord_ID(String mRecord_ID) {
+        this.mRecord_ID = mRecord_ID;
+    }
 
-	public void setmDuration(Double mDuration) {
-		this.mDuration = mDuration;
-	}
+    public void setmDateAdded(Double mDateAdded) {
+        this.mDateAdded = mDateAdded;
+    }
 
-	public void setmFileSizeLabel(String mFileSizeLabel) {
-		this.mFileSizeLabel = mFileSizeLabel;
-	}
+    public void setmDiscNumber(Double mDiscNumber) {
+        this.mDiscNumber = mDiscNumber;
+    }
 
-	public void setmFormatLabel(String mFormatLabel) {
-		this.mFormatLabel = mFormatLabel;
-	}
+    public void setmDuration(Double mDuration) {
+        this.mDuration = mDuration;
+    }
 
-	public void setmId(Integer mId) {
-		this.mId = mId;
-	}
+    public void setmFileSizeLabel(String mFileSizeLabel) {
+        this.mFileSizeLabel = mFileSizeLabel;
+    }
 
-	public void setmLastPlayed(Double mLastPlayed) {
-		this.mLastPlayed = mLastPlayed;
-	}
+    public void setmFormatLabel(String mFormatLabel) {
+        this.mFormatLabel = mFormatLabel;
+    }
 
-	public void setmName(String mName) {
-		this.mName = mName;
-	}
+    public void setmId(Integer mId) {
+        this.mId = mId;
+    }
 
-	public void setmPath(String mPath) {
-		this.mPath = mPath;
-	}
+    public void setmLastPlayed(Double mLastPlayed) {
+        this.mLastPlayed = mLastPlayed;
+    }
 
-	public void setmPlayCount(Integer mPlayCount) {
-		this.mPlayCount = mPlayCount;
-	}
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
 
-	public void setmPlaylistID(Integer mPlaylistID) {
-		this.mPlaylistID = mPlaylistID;
-	}
+    public void setmPath(String mPath) {
+        this.mPath = mPath;
+    }
 
-	public void setmPlaylistPlayOrder(Integer mPlaylistPlayOrder) {
-		this.mPlaylistPlayOrder = mPlaylistPlayOrder;
-	}
+    public void setmPlayCount(Integer mPlayCount) {
+        this.mPlayCount = mPlayCount;
+    }
 
-	public void setmPodCast(Boolean mPodCast) {
-		this.mPodCast = mPodCast;
-	}
+    public void setmPlaylistID(Integer mPlaylistID) {
+        this.mPlaylistID = mPlaylistID;
+    }
 
-	public void setmSampleRateLabel(String mSampleRateLabel) {
-		this.mSampleRateLabel = mSampleRateLabel;
-	}
+    public void setmPlaylistPlayOrder(Integer mPlaylistPlayOrder) {
+        this.mPlaylistPlayOrder = mPlaylistPlayOrder;
+    }
 
-	public void setmTrack(Integer mTrack) {
-		this.mTrack = mTrack;
-	}
+    public void setmPodCast(Boolean mPodCast) {
+        this.mPodCast = mPodCast;
+    }
 
-	public void setmYear(Integer mYear) {
-		this.mYear = mYear;
-	}
+    public void setmSampleRateLabel(String mSampleRateLabel) {
+        this.mSampleRateLabel = mSampleRateLabel;
+    }
 
-	public static final String[] CSV_HEADER = { "User ID", "Current Time (nanoseconds)", "Nano Time (milliseconds)",
-			"Seek Position (milliseconds)","Record ID", "Player Event Type","UI Event Type", "Album ID", "Album Name", "Artist ID", "Artist Name",
-			"Bit Rate", "Date Added", "Disc Number", "Duration", "File Size", "File Format", "Song ID", "Last Played",
-			"Song Name", "File Path", "Play Count", "Play List ID", "Play List Play Order", "Podcast", "Simple Rate",
-			"Track", "Year","Start Time","Elapsed Time" };
+    public void setmTrack(Integer mTrack) {
+        this.mTrack = mTrack;
+    }
 
-	public String getUserId() {
-		return mUserId;
-	}
+    public void setmYear(Integer mYear) {
+        this.mYear = mYear;
+    }
 
-	public Double getCurrentTimeMs() {
-		return currentTimeMs;
-	}
+    public static final String[] CSV_HEADER = {"User ID", "Current Time (nanoseconds)", "Nano Time (milliseconds)",
+            "Seek Position (milliseconds)", "Record ID", "Player Event Type", "UI Event Type", "Album ID", "Album Name", "Artist ID", "Artist Name",
+            "Bit Rate", "Date Added", "Disc Number", "Duration", "File Size", "File Format", "Song ID", "Last Played",
+            "Song Name", "File Path", "Play Count", "Play List ID", "Play List Play Order", "Podcast", "Simple Rate",
+            "Track", "Year", "Start Time", "Elapsed Time"};
 
-	public Double getSeekPositionMs() {
-		return seekPositionMs;
-	}
+    public String getUserId() {
+        return mUserId;
+    }
 
-	public Double getNanoTime() {
-		return nanoTime;
-	}
+    public Double getCurrentTimeMs() {
+        return currentTimeMs;
+    }
 
-	public String getPlayerEventType() {
-		return playerEventType;
-	}
+    public Double getSeekPositionMs() {
+        return seekPositionMs;
+    }
 
-	
-	
-	public String getUiEventType() {
-		return uiEventType;
-	}
+    public Double getNanoTime() {
+        return nanoTime;
+    }
 
-	public void setUiEventType(String uiEventType) {
-		this.uiEventType = uiEventType;
-	}
+    public String getPlayerEventType() {
+        return playerEventType;
+    }
 
-	public void setCurrentTimeMs(Double currentTimeMs) {
-		this.currentTimeMs = currentTimeMs;
-	}
+    public String getUiEventType() {
+        return uiEventType;
+    }
 
-	public void setSeekPositionMs(Double seekPositionMs) {
-		this.seekPositionMs = seekPositionMs;
-	}
+    public void setUiEventType(String uiEventType) {
+        this.uiEventType = uiEventType;
+    }
 
-	public void setNanoTime(Double nanoTime) {
-		this.nanoTime = nanoTime;
-	}
+    public void setCurrentTimeMs(Double currentTimeMs) {
+        this.currentTimeMs = currentTimeMs;
+    }
 
-	public void setPlayerEventType(String playerEventType) {
-		this.playerEventType = playerEventType;
-	}
+    public void setSeekPositionMs(Double seekPositionMs) {
+        this.seekPositionMs = seekPositionMs;
+    }
 
-	public void setmAlbumID(Long mAlbumID) {
-		this.mAlbumID = mAlbumID;
-	}
+    public void setNanoTime(Double nanoTime) {
+        this.nanoTime = nanoTime;
+    }
 
-	public void setmAlbumName(String mAlbumName) {
-		this.mAlbumName = mAlbumName;
-	}
+    public void setPlayerEventType(String playerEventType) {
+        this.playerEventType = playerEventType;
+    }
 
-	public void setmArtistID(Long mArtistID) {
-		this.mArtistID = mArtistID;
-	}
+    public void setmAlbumID(Long mAlbumID) {
+        this.mAlbumID = mAlbumID;
+    }
 
-	public void setmArtistName(String mArtistName) {
-		this.mArtistName = mArtistName;
-	}
+    public void setmAlbumName(String mAlbumName) {
+        this.mAlbumName = mAlbumName;
+    }
 
-	public void setmBitrateLabel(String mBitrateLabel) {
-		this.mBitrateLabel = mBitrateLabel;
-	}
+    public void setmArtistID(Long mArtistID) {
+        this.mArtistID = mArtistID;
+    }
 
-	public Double getElapsedTime() {
-		return elapsedTime;
-	}
+    public void setmArtistName(String mArtistName) {
+        this.mArtistName = mArtistName;
+    }
 
-	public void setElapsedTime(Double elapsedTime) {
-		this.elapsedTime = elapsedTime;
-	}
+    public void setmBitrateLabel(String mBitrateLabel) {
+        this.mBitrateLabel = mBitrateLabel;
+    }
 
-	public Double getStartTime() {
-		return startTime;
-	}
+    public Double getElapsedTime() {
+        return elapsedTime;
+    }
 
-	public void setStartTime(Double startTime) {
-		this.startTime = startTime;
-	}
-	
-	public String[] toStringArray() {
-		return new String[] { mUserId, StringUtils.valueOf(currentTimeMs), StringUtils.valueOf(nanoTime),
-				StringUtils.valueOf(seekPositionMs),mRecord_ID, playerEventType,uiEventType, StringUtils.valueOf(mAlbumID), mAlbumName,
-				StringUtils.valueOf(mArtistID), mArtistName, mBitrateLabel, StringUtils.valueOf(mDateAdded),
-				StringUtils.valueOf(mDiscNumber), StringUtils.valueOf(mDuration), mFileSizeLabel, mFormatLabel,
-				StringUtils.valueOf(mId), StringUtils.valueOf(mLastPlayed), mName, mPath,
-				StringUtils.valueOf(mPlayCount), StringUtils.valueOf(mPlaylistID),
-				StringUtils.valueOf(mPlaylistPlayOrder), StringUtils.valueOf(mPodCast), mSampleRateLabel,
-				StringUtils.valueOf(mTrack), StringUtils.valueOf(mYear),StringUtils.valueOf(startTime),StringUtils.valueOf(elapsedTime) };
-	}
+    public void setElapsedTime(Double elapsedTime) {
+        this.elapsedTime = elapsedTime;
+    }
 
-	
+    public Double getStartTime() {
+        return startTime;
+    }
 
-	
+    public void setStartTime(Double startTime) {
+        this.startTime = startTime;
+    }
 
-	
-
+    public String[] toStringArray() {
+        return new String[]{mUserId, StringUtils.valueOf(currentTimeMs), StringUtils.valueOf(nanoTime),
+                StringUtils.valueOf(seekPositionMs), mRecord_ID, playerEventType, uiEventType, StringUtils.valueOf(mAlbumID), mAlbumName,
+                StringUtils.valueOf(mArtistID), mArtistName, mBitrateLabel, StringUtils.valueOf(mDateAdded),
+                StringUtils.valueOf(mDiscNumber), StringUtils.valueOf(mDuration), mFileSizeLabel, mFormatLabel,
+                StringUtils.valueOf(mId), StringUtils.valueOf(mLastPlayed), mName, mPath,
+                StringUtils.valueOf(mPlayCount), StringUtils.valueOf(mPlaylistID),
+                StringUtils.valueOf(mPlaylistPlayOrder), StringUtils.valueOf(mPodCast), mSampleRateLabel,
+                StringUtils.valueOf(mTrack), StringUtils.valueOf(mYear), StringUtils.valueOf(startTime), StringUtils.valueOf(elapsedTime)};
+    }
 }
