@@ -56,7 +56,6 @@ public class MuserMusicDataAnalysisManager {
             MusicAnalysisModel mam1 = new MusicAnalysisModel(userId, doc.getId());
             MusicAnalysisModel mam = doc.toObject(MusicAnalysisModel.class);
             processSetterForUiEventAndPlayerevenets(mam1, mam);
-
         }
     }
 
@@ -66,8 +65,6 @@ public class MuserMusicDataAnalysisManager {
             MusicAnalysisModel mam1 = new MusicAnalysisModel(userId, doc.getId());
             MusicAnalysisModel mam = doc.toObject(MusicAnalysisModel.class);
             processSetterForUiEventAndPlayerevenets(mam1, mam);
-
-
         }
     }
 

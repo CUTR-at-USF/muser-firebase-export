@@ -10,7 +10,6 @@ public class MusicAnalysisModel {
     public MusicAnalysisModel(String userId, String record_ID) {
         mUserId = userId;
         setmRecord_ID(record_ID);
-
     }
 
     public static String[] getCsvHeader() {
