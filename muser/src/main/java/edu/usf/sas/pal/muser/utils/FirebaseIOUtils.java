@@ -19,6 +19,20 @@ public class FirebaseIOUtils {
         return getQueryDocumentSnapshots(cr);
     }
 
+
+    private static String buildDocumentPathByUid(String uid, String folder) {
+        StringBuilder pathBuilder = new StringBuilder();
+        pathBuilder.append("users/").append(uid).append("/").
+                append(folder);
+        return pathBuilder.toString();
+    }
+
+    public static DocumentReference getFirebaseDocReferenceByUserIdAndRecordId(Firestore db, String userId,
+                                                                               String recordId, String folder) {
+        String path = buildDocumentPathByUid(userId, folder);
+        return db.collection(path).document(recordId);
+    }
+
     private static List<QueryDocumentSnapshot> getQueryDocumentSnapshots(CollectionReference cr) {
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = cr.get();
         try {

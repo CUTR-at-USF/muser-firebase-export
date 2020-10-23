@@ -1,38 +1,54 @@
+
+/*
+ * Copyright (C) 2019-2020 University of South Florida
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package edu.usf.sas.pal.muser.options;
 
 public class ProgramOptions {
-	private static ProgramOptions programOptions = null;
-	
-	private ProgramOptions() {
-	}
-	
-	public static final String KEY_FILE = "keyFile";
-	public static final String USER_ID = "userId";
-	private String mKeyFilePath;
-	private String mUserId;
-	
-	public static ProgramOptions getInstance() {
-		if (programOptions == null) {
-			programOptions = new ProgramOptions();
-		}
-		return programOptions;
-	}
+    private static ProgramOptions programOptions = null;
 
-	public String getKeyFilePath() {
-		return mKeyFilePath;
-	}
+    private ProgramOptions() {
+    }
 
-	public ProgramOptions setKeyFilePath(String keyFilePath) {
-		mKeyFilePath = keyFilePath;
-		return this;
-	}
+    public static final String KEY_FILE = "keyFile";
+    public static final String USER_ID = "userId";
+    private String FileKeyPath;
+    private String UserId;
 
-	public String getUserId() {
-		return mUserId;
-	}
+    public static ProgramOptions getInstance() {
+        if (programOptions == null) {
+            programOptions = new ProgramOptions();
+        }
+        return programOptions;
+    }
 
-	public ProgramOptions setUserId(String userId) {
-		mUserId = userId;
-		return this;
-	}
+    public String getFileKeyPath() {
+        return FileKeyPath;
+    }
+
+    public ProgramOptions setFileKeyPath(String keyFilePath) {
+        FileKeyPath = keyFilePath;
+        return this;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public ProgramOptions setUserId(String userId) {
+        UserId = userId;
+        return this;
+    }
 }
