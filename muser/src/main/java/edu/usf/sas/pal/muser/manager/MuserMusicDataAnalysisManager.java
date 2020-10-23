@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2019-2020 University of South Florida
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package edu.usf.sas.pal.muser.manager;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -51,57 +67,26 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByIdForPlayerEvent(String userId) {
-        List<QueryDocumentSnapshot> userInfoById = new ArrayList<>(firebaseReader.getAllUserInfoById(userId));
-        for (QueryDocumentSnapshot doc : userInfoById) {
-            MusicAnalysisModel mam1 = new MusicAnalysisModel(userId, doc.getId());
-            MusicAnalysisModel mam = doc.toObject(MusicAnalysisModel.class);
-            processSetterForUiEventAndPlayerevenets(mam1, mam);
+
+        List<QueryDocumentSnapshot> userPlayerEventInfoById = new ArrayList<>(firebaseReader.getAllUserPlayerEventInfoById(userId));
+        for (QueryDocumentSnapshot doc : userPlayerEventInfoById) {
+            MusicAnalysisModel mam = new MusicAnalysisModel(userId, doc.getId(), doc.toObject(MusicAnalysisModel.class));
+            musicAnalysisList.add(mam);
+            csvFileWriter.appendAllToCsV(musicAnalysisList);
+            musicAnalysisList.clear();
 
         }
     }
 
     private void processUserByIdForUiEvent(String userId) {
-        List<QueryDocumentSnapshot> userInfoById = new ArrayList<>(firebaseReader.getAllUserUIInfoById(userId));
-        for (QueryDocumentSnapshot doc : userInfoById) {
-            MusicAnalysisModel mam1 = new MusicAnalysisModel(userId, doc.getId());
-            MusicAnalysisModel mam = doc.toObject(MusicAnalysisModel.class);
-            processSetterForUiEventAndPlayerevenets(mam1, mam);
-
-
+        List<QueryDocumentSnapshot> userUiEventInfoById = new ArrayList<>(firebaseReader.getAllUserUiEventInfoById(userId));
+        for (QueryDocumentSnapshot doc : userUiEventInfoById) {
+            MusicAnalysisModel mam = new MusicAnalysisModel(userId, doc.getId(), doc.toObject(MusicAnalysisModel.class));
+            musicAnalysisList.add(mam);
+            csvFileWriter.appendAllToCsV(musicAnalysisList);
+            musicAnalysisList.clear();
         }
     }
 
-    private void processSetterForUiEventAndPlayerevenets(MusicAnalysisModel mam1, MusicAnalysisModel mam) {
-        mam1.setCurrentTimeMs(mam.getCurrentTimeMs());
-        mam1.setNanoTime(mam.getNanoTime());
-        mam1.setPlayerEventType(mam.getPlayerEventType());
-        mam1.setUiEventType(mam.getUiEventType());
-        mam1.setSeekPositionMs(mam.getSeekPositionMs());
-        mam1.setmAlbumID(mam.song.getAlbumID());
-        mam1.setmAlbumName(mam.song.getAlbumName());
-        mam1.setmArtistID(mam.song.getArtistID());
-        mam1.setmArtistName(mam.song.getAlbumName());
-        mam1.setmBitrateLabel(mam.song.getBitrateLabel());
-        mam1.setmDateAdded(mam.song.getDateAdded());
-        mam1.setmDiscNumber(mam.song.getDiscNumber());
-        mam1.setmDuration(mam.song.getDuration());
-        mam1.setmFileSizeLabel(mam.song.getFileSizeLabel());
-        mam1.setmFormatLabel(mam.song.getFormatLabel());
-        mam1.setmId(mam.song.getId());
-        mam1.setmLastPlayed(mam.song.getLastPlayed());
-        mam1.setmName(mam.song.getName());
-        mam1.setmPath(mam.song.getPath());
-        mam1.setmPlayCount(mam.song.getPlayCount());
-        mam1.setmPlaylistID(mam.song.getPlaylistID());
-        mam1.setmPlaylistPlayOrder(mam.song.getPlaylistPlayOrder());
-        mam1.setmPodCast(mam.song.getPodCast());
-        mam1.setmSampleRateLabel(mam.song.getSampleRateLabel());
-        mam1.setmTrack(mam.song.getTrack());
-        mam1.setmYear(mam.song.getYear());
-        mam1.setStartTime(mam.getStartTime());
-        mam1.setElapsedTime(mam.getElapsedTime());
-        musicAnalysisList.add(mam1);
-        csvFileWriter.appendAllToCsV(musicAnalysisList);
-        musicAnalysisList.clear();
-    }
+
 }
