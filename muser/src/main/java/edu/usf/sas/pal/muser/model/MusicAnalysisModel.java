@@ -258,26 +258,33 @@ public class MusicAnalysisModel {
     private String BitrateLabel;
     private Long DateAdded;
     private Long DiscNumber;
-    private Long SongDuration;
+    private Long songDuration;
     private String FileSizeLabel;
     private String FormatLabel;
     private Integer SongId;
     private Long LastPlayed;
-    private String SongName;
-    private String FilePath;
+    private String songName;
+    private String songFilePath;
     private Integer PlayCount;
     private Integer PlaylistID;
     private Integer PlaylistPlayOrder;
     private Boolean PodCast;
     private String SampleRateLabel;
     private Integer Track;
-    private Integer ReleaseYear;
-    private Long EventStartTime;
+    private Integer songReleaseYear;
+    private Long eventStartTime;
     private Long startTime;
-    private Long EventElapsedTime;
+    private Long eventElapsedTime;
     private Long elapsedTime;
     public SongInfoList song;
 
+    public SongInfoList getSongInfoList() {
+        return song;
+    }
+
+    public void setSongInfoList(SongInfoList song) {
+        this.song = song;
+    }
 
     public static final String[] CSV_HEADER = {"User ID", "Record ID", "Player Event Type", "UI Event Type", "Current Time (nanoseconds)", "Nano Time (milliseconds)",
             "Seek Position (milliseconds)", "Album ID", "Album Name", "Artist ID", "Artist Name",
@@ -374,8 +381,8 @@ public class MusicAnalysisModel {
     }
 
 
-    public MusicAnalysisModel setFilePath(String path) {
-        FilePath = path;
+    public MusicAnalysisModel setSongFilePath(String path) {
+        songFilePath = path;
         return this;
     }
 
@@ -415,7 +422,7 @@ public class MusicAnalysisModel {
     }
 
     public MusicAnalysisModel setSongDuration(Long duration) {
-        SongDuration = duration;
+        songDuration = duration;
         return this;
     }
 
@@ -442,7 +449,7 @@ public class MusicAnalysisModel {
 
 
     public MusicAnalysisModel setSongName(String name) {
-        SongName = name;
+        songName = name;
         return this;
     }
 
@@ -478,18 +485,18 @@ public class MusicAnalysisModel {
     }
 
     public MusicAnalysisModel setReleaseYear(Integer year) {
-        ReleaseYear = year;
+        songReleaseYear = year;
         return this;
     }
 
 
     public MusicAnalysisModel setEventStartTime(Long startTime) {
-        EventStartTime = startTime;
+        eventStartTime = startTime;
         return this;
     }
 
     public MusicAnalysisModel setEventEslapsedTime(Long elapsedTime) {
-        EventElapsedTime = elapsedTime;
+        eventElapsedTime = elapsedTime;
         return this;
     }
 
@@ -498,44 +505,45 @@ public class MusicAnalysisModel {
         return new String[]{UserId, RecordId, eventPlayerType, eventUiType, StringUtils.valueOf(eventCurrentTimeMs), StringUtils.valueOf(eventNanoTime),
                 StringUtils.valueOf(eventSeekPositionMs), StringUtils.valueOf(AlbumId), AlbumName,
                 StringUtils.valueOf(ArtistId), ArtistName, BitrateLabel, StringUtils.valueOf(DateAdded),
-                StringUtils.valueOf(DiscNumber), StringUtils.valueOf(SongDuration), FileSizeLabel, FormatLabel,
-                StringUtils.valueOf(SongId), StringUtils.valueOf(LastPlayed), SongName, FilePath,
+                StringUtils.valueOf(DiscNumber), StringUtils.valueOf(songDuration), FileSizeLabel, FormatLabel,
+                StringUtils.valueOf(SongId), StringUtils.valueOf(LastPlayed), songName, songFilePath,
                 StringUtils.valueOf(PlayCount), StringUtils.valueOf(PlaylistID),
                 StringUtils.valueOf(PlaylistPlayOrder), StringUtils.valueOf(PodCast), SampleRateLabel,
-                StringUtils.valueOf(Track), StringUtils.valueOf(ReleaseYear), StringUtils.valueOf(EventStartTime), StringUtils.valueOf(EventElapsedTime)};
+                StringUtils.valueOf(Track), StringUtils.valueOf(songReleaseYear), StringUtils.valueOf(eventStartTime), StringUtils.valueOf(eventElapsedTime)};
     }
 
-    public MusicAnalysisModel(String userId, String recordId, MusicAnalysisModel musicAnalysisModel) {
-        setUserId(userId);
-        setRecordId(recordId);
-        setEventCurrentTimeMs(musicAnalysisModel.getCurrentTimeMs());
-        setEventSeekPositionMs(musicAnalysisModel.getSeekPositionMs());
-        setEventNanoTime(musicAnalysisModel.getNanoTime());
-        setEventPlayerType(musicAnalysisModel.getPlayerEventType());
-        setEventUiType(musicAnalysisModel.getUiEventType());
-        setFilePath(musicAnalysisModel.song.getPath());
-        setAlbumId(musicAnalysisModel.song.getAlbumID());
-        setAlbumName(musicAnalysisModel.song.getAlbumName());
-        setArtistId(musicAnalysisModel.song.getArtistID());
-        setArtistName(musicAnalysisModel.song.getArtistName());
-        setBitrateLabel(musicAnalysisModel.song.getBitrateLabel());
-        setDateAdded(musicAnalysisModel.song.getDateAdded());
-        setDiscNumber(musicAnalysisModel.song.getDiscNumber());
-        setSongDuration(musicAnalysisModel.song.getDuration());
-        setFileSizeLabel(musicAnalysisModel.song.getFileSizeLabel());
-        setFormatLabel(musicAnalysisModel.song.getFormatLabel());
-        setSongId(musicAnalysisModel.song.getId());
-        setLastPlayed(musicAnalysisModel.song.getLastPlayed());
-        setSongName(musicAnalysisModel.song.getName());
-        setPlayCount(musicAnalysisModel.song.getPlayCount());
-        setPlaylistID(musicAnalysisModel.song.getPlaylistID());
-        setPlaylistPlayOrder(musicAnalysisModel.song.getPlaylistPlayOrder());
-        setPodCast(musicAnalysisModel.song.getPodCast());
-        setSampleRateLabel(musicAnalysisModel.song.getSampleRateLabel());
-        setTrack(musicAnalysisModel.song.getTrack());
-        setReleaseYear(musicAnalysisModel.song.getYear());
-        setEventStartTime(musicAnalysisModel.getStartTime());
-        setEventEslapsedTime(musicAnalysisModel.getElapsedTime());
+    public MusicAnalysisModel(MusicAnalysisModel musicAnalysisModel, String recordId, String userId) {
+        this.RecordId = recordId;
+        this.UserId = userId;
+        this.song = musicAnalysisModel.getSongInfoList();
+        this.eventPlayerType = musicAnalysisModel.getPlayerEventType();
+        this.eventUiType = musicAnalysisModel.getUiEventType();
+        this.eventCurrentTimeMs = musicAnalysisModel.getCurrentTimeMs();
+        this.eventNanoTime = musicAnalysisModel.getNanoTime();
+        this.eventSeekPositionMs = musicAnalysisModel.getSeekPositionMs();
+        this.eventStartTime = musicAnalysisModel.getStartTime();
+        this.eventElapsedTime = musicAnalysisModel.getElapsedTime();
+        this.AlbumId = song.getAlbumID();
+        this.AlbumName = song.getAlbumName();
+        this.ArtistId = song.getArtistID();
+        this.AlbumName = song.getArtistName();
+        this.BitrateLabel = song.getBitrateLabel();
+        this.DateAdded = song.getDateAdded();
+        this.DiscNumber = song.getDiscNumber();
+        this.songDuration = song.getDuration();
+        this.FileSizeLabel = song.getFileSizeLabel();
+        this.FormatLabel = song.getFormatLabel();
+        this.SongId = song.getId();
+        this.LastPlayed = song.getLastPlayed();
+        this.songName = song.getName();
+        this.songFilePath = song.getPath();
+        this.PlayCount = song.getPlayCount();
+        this.PlaylistID = song.getPlaylistID();
+        this.PlaylistPlayOrder = song.getPlaylistPlayOrder();
+        this.PodCast = song.getPodCast();
+        this.SampleRateLabel = song.getSampleRateLabel();
+        this.Track = song.getTrack();
+        this.songReleaseYear = song.getYear();
 
     }
 
