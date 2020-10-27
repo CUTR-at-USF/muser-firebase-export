@@ -21,6 +21,7 @@ import edu.usf.sas.pal.muser.exception.FirebaseFileNotInitializedException;
 import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
+import edu.usf.sas.pal.muser.model.MusicAnalysisModel.SongInfoList;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class MuserMusicDataAnalysisManager {
     private ProgramOptions programOptions;
 
     private List<MusicAnalysisModel> musicAnalysisList;
+    private List<MusicAnalysisModel.SongInfoList> songInfoList;
 
     public MuserMusicDataAnalysisManager() throws FirebaseFileNotInitializedException {
         firebaseReader = new FirebaseReader();
@@ -74,7 +76,6 @@ public class MuserMusicDataAnalysisManager {
             musicAnalysisList.add(mam);
             csvFileWriter.appendAllToCsV(musicAnalysisList);
             musicAnalysisList.clear();
-
         }
     }
 
@@ -87,6 +88,4 @@ public class MuserMusicDataAnalysisManager {
             musicAnalysisList.clear();
         }
     }
-
-
 }
