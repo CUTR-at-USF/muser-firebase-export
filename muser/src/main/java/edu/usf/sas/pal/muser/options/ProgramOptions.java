@@ -22,10 +22,10 @@ public class ProgramOptions {
     private ProgramOptions() {
     }
 
-    public static final String KEY_FILE = "keyFile";
+    public static final String KEY_FILE = "fileKeyPath";
     public static final String USER_ID = "userId";
-    private String FileKeyPath;
-    private String UserId;
+    private String fileKeyPath;
+    private String userId;
 
     public static ProgramOptions getInstance() {
         if (programOptions == null) {
@@ -35,20 +35,20 @@ public class ProgramOptions {
     }
 
     public String getFileKeyPath() {
-        return FileKeyPath;
+        return fileKeyPath;
     }
 
-    public ProgramOptions setFileKeyPath(String keyFilePath) {
-        FileKeyPath = keyFilePath;
+    public ProgramOptions setFileKeyPath(String fileKeyPath) {
+    	this.fileKeyPath = fileKeyPath;
         return this;
     }
 
     public String getUserId() {
-        return UserId;
+        return userId;
     }
 
     public ProgramOptions setUserId(String userId) {
-        UserId = userId;
+    	this.userId = userId;
         return this;
     }
 }
