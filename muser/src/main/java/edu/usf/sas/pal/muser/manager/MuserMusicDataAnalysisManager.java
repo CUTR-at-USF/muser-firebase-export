@@ -21,7 +21,6 @@ import edu.usf.sas.pal.muser.exception.FirebaseFileNotInitializedException;
 import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
-import edu.usf.sas.pal.muser.model.MusicAnalysisModel.SongInfoList;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ public class MuserMusicDataAnalysisManager {
     private ProgramOptions programOptions;
 
     private List<MusicAnalysisModel> musicAnalysisList;
-    private List<MusicAnalysisModel.SongInfoList> songInfoList;
 
     public MuserMusicDataAnalysisManager() throws FirebaseFileNotInitializedException {
         firebaseReader = new FirebaseReader();
@@ -72,7 +70,7 @@ public class MuserMusicDataAnalysisManager {
 
         List<QueryDocumentSnapshot> userPlayerEventInfoById = new ArrayList<>(firebaseReader.getAllUserPlayerEventInfoById(userId));
         for (QueryDocumentSnapshot doc : userPlayerEventInfoById) {
-            MusicAnalysisModel mam = new MusicAnalysisModel(userId, doc.getId(), doc.toObject(MusicAnalysisModel.class));
+            MusicAnalysisModel mam = new MusicAnalysisModel( doc.toObject(MusicAnalysisModel.class), doc.getId(),userId);
             musicAnalysisList.add(mam);
             csvFileWriter.appendAllToCsV(musicAnalysisList);
             musicAnalysisList.clear();
@@ -82,7 +80,7 @@ public class MuserMusicDataAnalysisManager {
     private void processUserByIdForUiEvent(String userId) {
         List<QueryDocumentSnapshot> userUiEventInfoById = new ArrayList<>(firebaseReader.getAllUserUiEventInfoById(userId));
         for (QueryDocumentSnapshot doc : userUiEventInfoById) {
-            MusicAnalysisModel mam = new MusicAnalysisModel(userId, doc.getId(), doc.toObject(MusicAnalysisModel.class));
+            MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class),doc.getId(),userId );
             musicAnalysisList.add(mam);
             csvFileWriter.appendAllToCsV(musicAnalysisList);
             musicAnalysisList.clear();
