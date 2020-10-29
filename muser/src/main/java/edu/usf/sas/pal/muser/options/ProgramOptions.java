@@ -22,7 +22,7 @@ public class ProgramOptions {
     private ProgramOptions() {
     }
 
-    public static final String KEY_FILE = "fileKeyPath";
+    public static final String KEY_FILE = "keyFile";
     public static final String USER_ID = "userId";
     private String fileKeyPath;
     private String userId;
