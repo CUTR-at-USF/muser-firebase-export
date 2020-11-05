@@ -17,18 +17,230 @@
 
 package edu.usf.sas.pal.muser.model;
 
+import java.util.List;
+
 import edu.usf.sas.pal.muser.utils.StringUtils;
 
 
 public class MusicAnalysisModel {
+
     public MusicAnalysisModel() {
     }
 
-    public static class SongInfoList {
 
-        public SongInfoList() {
+    public static class AlbumArtistData {
+
+        public AlbumArtistData() {
+        }
+    }
+
+    public static class AlbumArtist {
+
+        public AlbumArtist() {
         }
 
+        public static class AlbumData {
+
+            public AlbumData() {
+            }
+
+
+            public String getAlbumArtistName() {
+                return albumArtistName;
+            }
+
+            public void setAlbumArtistName(String albumArtistName) {
+                this.albumArtistName = albumArtistName;
+            }
+
+            private String albumArtistName;
+            private List<Artists> artists;
+            private Long dateAdded;
+            private Long id;
+            private String name;
+            private Integer numDiscs;
+            private Integer numSongs;
+            private List<String> paths;
+            private Integer year;
+
+            public static class Artists {
+
+                @Override
+                public String toString() {
+                    return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
+                            + numSongs + "";
+                }
+
+
+                public long id;
+                public String name;
+                public int numAlbums;
+                public int numSongs;
+
+                public long getId() {
+                    return id;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public int getNumAlbums() {
+                    return numAlbums;
+                }
+
+                public int getNumSongs() {
+                    return numSongs;
+                }
+
+                public void setId(long id) {
+                    this.id = id;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public void setNumAlbums(int numAlbums) {
+                    this.numAlbums = numAlbums;
+                }
+
+                public void setNumSongs(int numSongs) {
+                    this.numSongs = numSongs;
+                }
+
+
+                public Artists() {
+                }
+            }
+
+            public Long getDateAdded() {
+                return dateAdded;
+            }
+
+            public Long getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public Integer getNumDiscs() {
+                return numDiscs;
+            }
+
+            public Integer getNumSongs() {
+                return numSongs;
+            }
+
+            public List<String> getPaths() {
+                return paths;
+            }
+
+            public Integer getYear() {
+                return year;
+            }
+
+            public void setDateAdded(Long dateAdded) {
+                this.dateAdded = dateAdded;
+            }
+
+            public void setId(Long id) {
+                this.id = id;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public void setNumDiscs(Integer numDiscs) {
+                this.numDiscs = numDiscs;
+            }
+
+            public void setNumSongs(Integer numSongs) {
+                this.numSongs = numSongs;
+            }
+
+            public void setPaths(List<String> paths) {
+                this.paths = paths;
+            }
+
+            public void setYear(Integer year) {
+                this.year = year;
+            }
+
+            public List<Artists> getArtists() {
+                return artists;
+            }
+
+            public void setArtists(List<Artists> artists) {
+                this.artists = artists;
+            }
+
+
+        }
+
+        private String name;
+        private List<AlbumData> albumData;
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public List<AlbumData> getAlbumData() {
+            return albumData;
+        }
+
+        public void setAlbumData(List<AlbumData> albumData) {
+            this.albumData = albumData;
+        }
+    }
+
+
+    public static class GenreData {
+
+        public GenreData() {
+        }
+
+        private Long id;
+        private String name;
+        private Integer numSong;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public Integer getNumSong() {
+            return numSong;
+        }
+
+        public void setNumSong(Integer numSong) {
+            this.numSong = numSong;
+        }
+    }
+
+    public static class SongData {
+
+        public SongData() {
+        }
 
         private Long albumID;
         private String albumName;
@@ -233,14 +445,153 @@ public class MusicAnalysisModel {
 
     }
 
+    public static class Album {
+
+        public Album() {
+        }
+
+        private String albumArtistName;
+        private List<Artists> artists;
+        private Long dateAdded;
+        private Long id;
+        private String name;
+        private Integer numDiscs;
+        private Integer numSongs;
+        private List<String> paths;
+        private Integer year;
+
+
+        public List<String> getPaths() {
+            return paths;
+        }
+
+        public void setPaths(List<String> paths) {
+            this.paths = paths;
+        }
+
+        public List<Artists> getArtists() {
+            return artists;
+        }
+
+        public void setArtists(List<Artists> artists) {
+            this.artists = artists;
+        }
+
+        public static class Artists {
+
+            @Override
+            public String toString() {
+                return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
+                        + numSongs + "";
+            }
+
+
+            public long id;
+            public String name;
+            public int numAlbums;
+            public int numSongs;
+
+            public long getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public int getNumAlbums() {
+                return numAlbums;
+            }
+
+            public int getNumSongs() {
+                return numSongs;
+            }
+
+            public void setId(long id) {
+                this.id = id;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public void setNumAlbums(int numAlbums) {
+                this.numAlbums = numAlbums;
+            }
+
+            public void setNumSongs(int numSongs) {
+                this.numSongs = numSongs;
+            }
+
+
+            public Artists() {
+            }
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getAlbumArtistName() {
+            return albumArtistName;
+        }
+
+        public Integer getNumSongs() {
+            return numSongs;
+        }
+
+        public Integer getNumDiscs() {
+            return numDiscs;
+        }
+
+        public Long getDateAdded() {
+            return dateAdded;
+        }
+
+        public Integer getYear() {
+            return year;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setAlbumArtistName(String albumArtistName) {
+            this.albumArtistName = albumArtistName;
+        }
+
+        public void setNumSongs(Integer numSongs) {
+            this.numSongs = numSongs;
+        }
+
+        public void setNumDiscs(Integer numDiscs) {
+            this.numDiscs = numDiscs;
+        }
+
+        public void setDateAdded(Long dateAdded) {
+            this.dateAdded = dateAdded;
+        }
+
+        public void setYear(Integer year) {
+            this.year = year;
+        }
+
+    }
 
     public static String[] getCsvHeader() {
         return CSV_HEADER;
     }
 
-
-    private String UserId;
-    private String RecordId;
+    private String userId;
+    private String recordId;
     private Long eventCurrentTimeMs;
     private Long currentTimeMs;
     private Long eventNanoTime;
@@ -251,46 +602,73 @@ public class MusicAnalysisModel {
     private String playerEventType;
     private String eventUiType;
     private String uiEventType;
-    private Long AlbumId;
-    private String AlbumName;
-    private Long ArtistId;
-    private String ArtistName;
-    private String BitrateLabel;
-    private Long DateAdded;
-    private Long DiscNumber;
-    private Long songDuration;
-    private String FileSizeLabel;
-    private String FormatLabel;
-    private Integer SongId;
-    private Long LastPlayed;
-    private String songName;
-    private String songFilePath;
-    private Integer PlayCount;
-    private Integer PlaylistID;
-    private Integer PlaylistPlayOrder;
-    private Boolean PodCast;
-    private String SampleRateLabel;
-    private Integer Track;
-    private Integer songReleaseYear;
-    private Long eventStartTime;
-    private Long startTime;
     private Long eventElapsedTime;
     private Long elapsedTime;
-    public SongInfoList song;
+    private Long eventStartTime;
+    private Long startTime;
+    public SongData song;
+    public Album album;
+    public AlbumArtistData albumArtistData;
 
-    public SongInfoList getSongInfoList() {
+    public AlbumArtistData getAlbumArtistData() {
+        return albumArtistData;
+    }
+
+    public void setAlbumArtistData(AlbumArtistData albumArtistData) {
+        this.albumArtistData = albumArtistData;
+    }
+
+    public GenreData genre;
+    public AlbumArtist albumArtist;
+
+
+    public AlbumArtist getAlbumArtist() {
+        return albumArtist;
+    }
+
+    public void setAlbumArtist(AlbumArtist albumArtist) {
+        this.albumArtist = albumArtist;
+    }
+
+
+    public GenreData getGenreData() {
+        return genre;
+    }
+
+    public void setGenreData(GenreData genre) {
+        this.genre = genre;
+    }
+
+
+    public SongData getSongData() {
         return song;
     }
 
-    public void setSongInfoList(SongInfoList song) {
+    public void setSongData(SongData song) {
         this.song = song;
     }
 
-    public static final String[] CSV_HEADER = {"User ID", "Record ID", "Player Event Type", "UI Event Type", "Current Time (nanoseconds)", "Nano Time (milliseconds)",
-            "Seek Position (milliseconds)", "Album ID", "Album Name", "Artist ID", "Artist Name",
-            "Bit Rate", "Date Added", "Disc Number", "Duration", "File Size", "File Format", "Song ID", "Last Played",
-            "Song Name", "File Path", "Play Count", "Play List ID", "Play List Play Order", "Podcast", "Simple Rate",
-            "Track", "Year", "Start Time", "Elapsed Time"};
+    public Album getAlbumData() {
+        return album;
+    }
+
+    public void setAlbumData(Album album) {
+        this.album = album;
+    }
+
+    public static final String[] CSV_HEADER = {
+            "User ID", "Record ID", "Player Event Type", "UI Event Type",
+            "Event Current Time (nanoseconds)", "Nano Time (milliseconds)",
+            "Event Seek Position (milliseconds)", "Event Start Time", "Event Elapsed Time",
+            "Song Album ID", "Song Album Name", "Song Artist ID", "Song Artist Name",
+            "Song Bit Rate", "Song Date Added", "Song Disc Number", "Song Duration",
+            "Song File Size", "Song File Format", "Song ID", "Song Last Played",
+            "Song Name", "Song File Path", "Song Play Count", "Song PlayList ID",
+            "PlayList Play Order", "Podcast", "Song Simple Rate",
+            "Track", "Song Release Year", "Album Artist Name", "Album ID",
+            "Album Name", "Album Artist Name", "Album Date Added", "Album Release Year",
+            " Number Of Songs in Album ", " Number Of Discs In Album", "Album Artists",
+            "Album Paths", "Genre ID", "Genre Name", "Number Of Songs For Genre",};
 
 
     public Long getSeekPositionMs() {
@@ -342,17 +720,17 @@ public class MusicAnalysisModel {
     }
 
     public String getRecordId() {
-        return RecordId;
+        return recordId;
     }
 
 
     public void setUserId(String userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
 
     public void setRecordId(String recordId) {
-        RecordId = recordId;
+        this.recordId = recordId;
     }
 
     public MusicAnalysisModel setEventCurrentTimeMs(Long currentTimeMs) {
@@ -380,142 +758,75 @@ public class MusicAnalysisModel {
         return this;
     }
 
-
-    public MusicAnalysisModel setSongFilePath(String path) {
-        songFilePath = path;
-        return this;
-    }
-
-    public MusicAnalysisModel setAlbumId(Long albumID) {
-        AlbumId = albumID;
-        return this;
-    }
-
-    public MusicAnalysisModel setAlbumName(String albumName) {
-        AlbumName = albumName;
-        return this;
-    }
-
-    public MusicAnalysisModel setArtistId(Long artistID) {
-        ArtistId = artistID;
-        return this;
-    }
-
-    public MusicAnalysisModel setArtistName(String artistName) {
-        ArtistName = artistName;
-        return this;
-    }
-
-    public MusicAnalysisModel setBitrateLabel(String bitrateLabel) {
-        BitrateLabel = bitrateLabel;
-        return this;
-    }
-
-    public MusicAnalysisModel setDateAdded(Long dateAdded) {
-        DateAdded = dateAdded;
-        return this;
-    }
-
-    public MusicAnalysisModel setDiscNumber(Long discNumber) {
-        DiscNumber = discNumber;
-        return this;
-    }
-
-    public MusicAnalysisModel setSongDuration(Long duration) {
-        songDuration = duration;
-        return this;
-    }
-
-    public MusicAnalysisModel setFileSizeLabel(String fileSizeLabel) {
-        FileSizeLabel = fileSizeLabel;
-        return this;
-    }
-
-    public MusicAnalysisModel setFormatLabel(String formatLabel) {
-        FormatLabel = formatLabel;
-        return this;
-    }
-
-    public MusicAnalysisModel setSongId(Integer id) {
-        SongId = id;
-        return this;
-    }
-
-
-    public MusicAnalysisModel setLastPlayed(Long lastPlayed) {
-        LastPlayed = lastPlayed;
-        return this;
-    }
-
-
-    public MusicAnalysisModel setSongName(String name) {
-        songName = name;
-        return this;
-    }
-
-    public MusicAnalysisModel setPlayCount(Integer playCount) {
-        PlayCount = playCount;
-        return this;
-    }
-
-    public MusicAnalysisModel setPlaylistID(Integer playlistID) {
-        PlaylistID = playlistID;
-        return this;
-    }
-
-    public MusicAnalysisModel setPlaylistPlayOrder(Integer playlistPlayOrder) {
-        PlaylistPlayOrder = playlistPlayOrder;
-        return this;
-    }
-
-    public MusicAnalysisModel setPodCast(Boolean podCast) {
-        PodCast = podCast;
-        return this;
-    }
-
-    public MusicAnalysisModel setSampleRateLabel(String sampleRateLabel) {
-        SampleRateLabel = sampleRateLabel;
-        return this;
-    }
-
-
-    public MusicAnalysisModel setTrack(Integer track) {
-        Track = track;
-        return this;
-    }
-
-    public MusicAnalysisModel setReleaseYear(Integer year) {
-        songReleaseYear = year;
-        return this;
-    }
-
-
     public MusicAnalysisModel setEventStartTime(Long startTime) {
         eventStartTime = startTime;
         return this;
     }
 
-    public MusicAnalysisModel setEventEslapsedTime(Long elapsedTime) {
+    public MusicAnalysisModel setEventElapsedTime(Long elapsedTime) {
         eventElapsedTime = elapsedTime;
         return this;
     }
 
 
     public String[] toStringArray() {
-        return new String[]{UserId, RecordId, eventPlayerType, eventUiType, StringUtils.valueOf(eventCurrentTimeMs), StringUtils.valueOf(eventNanoTime),
-                StringUtils.valueOf(eventSeekPositionMs), StringUtils.valueOf(AlbumId), AlbumName,
-                StringUtils.valueOf(ArtistId), ArtistName, BitrateLabel, StringUtils.valueOf(DateAdded),
-                StringUtils.valueOf(DiscNumber), StringUtils.valueOf(songDuration), FileSizeLabel, FormatLabel,
-                StringUtils.valueOf(SongId), StringUtils.valueOf(LastPlayed), songName, songFilePath,
-                StringUtils.valueOf(PlayCount), StringUtils.valueOf(PlaylistID),
-                StringUtils.valueOf(PlaylistPlayOrder), StringUtils.valueOf(PodCast), SampleRateLabel,
-                StringUtils.valueOf(Track), StringUtils.valueOf(songReleaseYear), StringUtils.valueOf(eventStartTime), StringUtils.valueOf(eventElapsedTime)};
+        return new String[]{
+                userId,
+                recordId,
+                eventPlayerType,
+                eventUiType,
+                StringUtils.valueOf(eventCurrentTimeMs),
+                StringUtils.valueOf(eventNanoTime),
+                StringUtils.valueOf(eventSeekPositionMs),
+                StringUtils.valueOf(eventStartTime),
+                StringUtils.valueOf(eventElapsedTime),
+                (song == null || song.getAlbumID() == null ? "" : song.getAlbumID() + ""),
+                (song == null || song.getAlbumName() == null ? "" : song.getAlbumName()),
+                (song == null || song.getArtistID() == null ? "" : song.getArtistID() + ""),
+                (song == null || song.getArtistName() == null ? "" : song.getArtistName() + ""),
+                (song == null || song.getBitrateLabel() == null ? "" : song.getBitrateLabel()),
+                (song == null || song.getDateAdded() == null ? "" : song.getDateAdded() + ""),
+                (song == null || song.getDiscNumber() == null ? "" : song.getDiscNumber() + ""),
+                (song == null || song.getDuration() == null ? "" : song.getDuration() + ""),
+                (song == null || song.getFileSizeLabel() == null ? "" : song.getFileSizeLabel()),
+                (song == null || song.getFormatLabel() == null ? "" : song.getFormatLabel()),
+                (song == null || song.getId() == null ? "" : song.getId() + ""),
+                (song == null || song.getLastPlayed() == null ? "" : song.getLastPlayed() + ""),
+                (song == null || song.getName() == null ? "" : song.getName()),
+                (song == null || song.getPath() == null ? "" : song.getPath()),
+                (song == null || song.getPlayCount() == null ? "" : song.getPlayCount() + ""),
+                (song == null || song.getPlaylistID() == null ? "" : song.getPlaylistID() + ""),
+                (song == null || song.getPlaylistPlayOrder() == null ? "" : song.getPlaylistPlayOrder() + ""),
+                (song == null || song.getPodCast() == null ? "" : song.getPodCast() + ""),
+                (song == null || song.getSampleRateLabel() == null ? "" : song.getSampleRateLabel()),
+                (song == null || song.getTrack() == null ? "" : song.getTrack() + ""),
+                (song == null || song.getYear() == null ? "" : song.getYear() + ""),
+                (albumArtist == null || albumArtist.getName() == null ? "" : albumArtist.getName()),
+                (album == null || album.getId() == null ? "" : album.getId() + ""),
+                (album == null || album.getName() == null ? "" : album.getName()),
+                (album == null || album.getAlbumArtistName() == null ? "" : album.getAlbumArtistName()),
+                (album == null || album.getDateAdded() == null ? "" : album.getDateAdded() + ""),
+                (album == null || album.getYear() == null ? "" : album.getYear() + ""),
+                (album == null || album.getNumSongs() == null ? "" : album.getNumSongs() + ""),
+                (album == null || album.getNumDiscs() == null ? "" : album.getNumDiscs() + ""),
+                (album == null || album.getArtists() == null ? "" : album.getArtists() + ""),
+                (album == null || album.getPaths() == null ? "" : album.getPaths() + ""),
+                (genre == null || genre.getId() == null ? "" : genre.getId() + ""),
+                (genre == null || genre.getName() == null ? "" : genre.getName()),
+                (genre == null || genre.getNumSong() == null ? "" : genre.getNumSong() + ""),
+
+        };
     }
 
+
     public MusicAnalysisModel(MusicAnalysisModel musicAnalysisModel, String recordId, String userId) {
-        this.RecordId = recordId;
-        this.UserId = userId;
-        this.song = musicAnalysisModel.getSongInfoList();
+        this.recordId = recordId;
+        this.userId = userId;
+        this.song = musicAnalysisModel.getSongData();
+        this.album = musicAnalysisModel.getAlbumData();
+        this.albumArtist = musicAnalysisModel.getAlbumArtist();
+        this.albumArtistData = musicAnalysisModel.getAlbumArtistData();
+        this.genre = musicAnalysisModel.getGenreData();
         this.eventPlayerType = musicAnalysisModel.getPlayerEventType();
         this.eventUiType = musicAnalysisModel.getUiEventType();
         this.eventCurrentTimeMs = musicAnalysisModel.getCurrentTimeMs();
@@ -523,30 +834,6 @@ public class MusicAnalysisModel {
         this.eventSeekPositionMs = musicAnalysisModel.getSeekPositionMs();
         this.eventStartTime = musicAnalysisModel.getStartTime();
         this.eventElapsedTime = musicAnalysisModel.getElapsedTime();
-        this.AlbumId = song.getAlbumID();
-        this.AlbumName = song.getAlbumName();
-        this.ArtistId = song.getArtistID();
-        this.AlbumName = song.getArtistName();
-        this.BitrateLabel = song.getBitrateLabel();
-        this.DateAdded = song.getDateAdded();
-        this.DiscNumber = song.getDiscNumber();
-        this.songDuration = song.getDuration();
-        this.FileSizeLabel = song.getFileSizeLabel();
-        this.FormatLabel = song.getFormatLabel();
-        this.SongId = song.getId();
-        this.LastPlayed = song.getLastPlayed();
-        this.songName = song.getName();
-        this.songFilePath = song.getPath();
-        this.PlayCount = song.getPlayCount();
-        this.PlaylistID = song.getPlaylistID();
-        this.PlaylistPlayOrder = song.getPlaylistPlayOrder();
-        this.PodCast = song.getPodCast();
-        this.SampleRateLabel = song.getSampleRateLabel();
-        this.Track = song.getTrack();
-        this.songReleaseYear = song.getYear();
-
     }
-
-
 }
 
