@@ -33,6 +33,7 @@ public class ProcessorMain {
         ProgramOptions programOptions = ProgramOptions.getInstance();
 
         CommandLineParser parser = new DefaultParser();
+
         try {
             CommandLine cmd = parser.parse(options, args);
             if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
@@ -48,6 +49,7 @@ public class ProcessorMain {
         } catch (ParseException e) {
             System.err.println("Invalid command line options");
         }
+
 
         System.out.println("Analysis started!");
 

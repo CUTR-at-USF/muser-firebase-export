@@ -22,7 +22,6 @@ import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +69,7 @@ public class MuserMusicDataAnalysisManager {
 
         List<QueryDocumentSnapshot> userPlayerEventInfoById = new ArrayList<>(firebaseReader.getAllUserPlayerEventInfoById(userId));
         for (QueryDocumentSnapshot doc : userPlayerEventInfoById) {
-            MusicAnalysisModel mam = new MusicAnalysisModel( doc.toObject(MusicAnalysisModel.class), doc.getId(),userId);
+            MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class), doc.getId(), userId);
             musicAnalysisList.add(mam);
             csvFileWriter.appendAllToCsV(musicAnalysisList);
             musicAnalysisList.clear();
@@ -80,7 +79,7 @@ public class MuserMusicDataAnalysisManager {
     private void processUserByIdForUiEvent(String userId) {
         List<QueryDocumentSnapshot> userUiEventInfoById = new ArrayList<>(firebaseReader.getAllUserUiEventInfoById(userId));
         for (QueryDocumentSnapshot doc : userUiEventInfoById) {
-            MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class),doc.getId(),userId );
+            MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class), doc.getId(), userId);
             musicAnalysisList.add(mam);
             csvFileWriter.appendAllToCsV(musicAnalysisList);
             musicAnalysisList.clear();

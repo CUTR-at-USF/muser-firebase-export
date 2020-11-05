@@ -39,7 +39,7 @@ public class ProgramOptions {
     }
 
     public ProgramOptions setFileKeyPath(String fileKeyPath) {
-    	this.fileKeyPath = fileKeyPath;
+        this.fileKeyPath = fileKeyPath;
         return this;
     }
 
@@ -48,7 +48,7 @@ public class ProgramOptions {
     }
 
     public ProgramOptions setUserId(String userId) {
-    	this.userId = userId;
+        this.userId = userId;
         return this;
     }
 }
