@@ -15,14 +15,12 @@
  */
 
 package edu.usf.sas.pal.muser.io;
-
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
 import edu.usf.sas.pal.muser.constants.FirebaseConstants;
 import edu.usf.sas.pal.muser.exception.FirebaseFileNotInitializedException;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
 import edu.usf.sas.pal.muser.utils.FirebaseIOUtils;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;

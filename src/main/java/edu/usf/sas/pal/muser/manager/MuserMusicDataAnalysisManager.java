@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package edu.usf.sas.pal.muser.manager;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -22,6 +21,7 @@ import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -15,10 +15,10 @@
  */
 
 package edu.usf.sas.pal.muser.io;
-
 import com.opencsv.CSVWriter;
 import edu.usf.sas.pal.muser.constants.FirebaseConstants;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

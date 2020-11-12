@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package edu.usf.sas.pal.muser.model;
 
 import java.util.List;
@@ -211,6 +210,7 @@ public class MusicAnalysisModel {
         private Long id;
         private String name;
         private Integer numSong;
+        private Integer numSongs;
 
         public String getName() {
             return name;
@@ -234,6 +234,14 @@ public class MusicAnalysisModel {
 
         public void setNumSong(Integer numSong) {
             this.numSong = numSong;
+        }
+
+        public Integer getNumSongs() {
+            return numSongs;
+        }
+
+        public void setNumSongs(Integer numSongs) {
+            this.numSongs = numSongs;
         }
     }
 

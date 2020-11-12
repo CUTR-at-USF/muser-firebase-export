@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 package edu.usf.sas.pal.muser.options;
-
 public class ProgramOptions {
     private static ProgramOptions programOptions = null;
 

@@ -2,7 +2,6 @@ package edu.usf.sas.pal.muser.utils;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 

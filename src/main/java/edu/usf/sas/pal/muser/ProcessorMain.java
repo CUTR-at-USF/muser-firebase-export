@@ -20,7 +20,6 @@ import edu.usf.sas.pal.muser.exception.FirebaseFileNotInitializedException;
 import edu.usf.sas.pal.muser.manager.MuserMusicDataAnalysisManager;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
 import org.apache.commons.cli.*;
-
 /**
  * Main class to set the user id and Admin key file path passed by user through commond line arrguments.
  */
@@ -34,25 +33,22 @@ public class ProcessorMain {
 
         CommandLineParser parser = new DefaultParser();
 
-//      try {
-//      CommandLine cmd = parser.parse(options, args);
-//      if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
-//          programOptions.setFileKeyPath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
-//      } else {
-//          System.err.println("Firebase admin key is not provided. \n" +
-//                  "Provide an admin key using -keyFile path/to/file.json");
-//          return;
-//      }
-//      if (cmd.hasOption(ProgramOptions.USER_ID)) {
-//          programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
-//      }
-//  } catch (ParseException e) {
-//      System.err.println("Invalid command line options");
-//  }
-  programOptions.setFileKeyPath("/Users/pradeepipol/Music/RA-OCTOBER/muser-1d7ac-firebase-adminsdk-stkuo-1a5e1fccc4.json");
-  programOptions.setUserId(null);
-  System.out.println("Analysis started!");
-
+        try {
+            CommandLine cmd = parser.parse(options, args);
+            if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
+                programOptions.setFileKeyPath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
+            } else {
+                System.err.println("Firebase admin key is not provided. \n" +
+                        "Provide an admin key using -keyFile path/to/file.json");
+                return;
+            }
+            if (cmd.hasOption(ProgramOptions.USER_ID)) {
+                programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
+            }
+        } catch (ParseException e) {
+            System.err.println("Invalid command line options");
+        }
+        System.out.println("Analysis started!");
 
 
         System.out.println("Analysis started!");
