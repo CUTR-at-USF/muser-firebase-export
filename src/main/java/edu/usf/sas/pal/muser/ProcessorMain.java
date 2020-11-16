@@ -48,9 +48,7 @@ public class ProcessorMain {
         } catch (ParseException e) {
             System.err.println("Invalid command line options");
         }
-        System.out.println("Analysis started!");
-
-
+        
         System.out.println("Analysis started!");
 
         try {
