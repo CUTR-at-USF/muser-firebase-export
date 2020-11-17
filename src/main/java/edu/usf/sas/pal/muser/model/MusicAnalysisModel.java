@@ -30,15 +30,200 @@ public class MusicAnalysisModel {
     public static class AlbumArtistData {
 
         public AlbumArtistData() {
+
         }
+
+        public static class AlbumData {
+
+            @Override
+            public String toString() {
+                return "AlbumData [albumArtistName=" + albumArtistName + ", artists=" + artists + ", dateAdded="
+                        + dateAdded + ", id=" + id + ", name=" + name + ", numDiscs=" + numDiscs + ", numSongs="
+                        + numSongs + ", paths=" + paths + ", year=" + year + "]";
+            }
+
+
+            public AlbumData() {
+            }
+
+
+            public String getAlbumArtistName() {
+                return albumArtistName;
+            }
+
+            public void setAlbumArtistName(String albumArtistName) {
+                this.albumArtistName = albumArtistName;
+            }
+
+            private String albumArtistName;
+            private List<Artists> artists;
+            private Long dateAdded;
+            private Long id;
+            private String name;
+            private Integer numDiscs;
+            private Integer numSongs;
+            private List<String> paths;
+            private Integer year;
+
+            public static class Artists {
+
+                @Override
+                public String toString() {
+                    return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
+                            + numSongs + "";
+                }
+
+
+                public long id;
+                public String name;
+                public int numAlbums;
+                public int numSongs;
+
+                public long getId() {
+                    return id;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public int getNumAlbums() {
+                    return numAlbums;
+                }
+
+                public int getNumSongs() {
+                    return numSongs;
+                }
+
+                public void setId(long id) {
+                    this.id = id;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public void setNumAlbums(int numAlbums) {
+                    this.numAlbums = numAlbums;
+                }
+
+                public void setNumSongs(int numSongs) {
+                    this.numSongs = numSongs;
+                }
+
+
+                public Artists() {
+                }
+            }
+
+            public Long getDateAdded() {
+                return dateAdded;
+            }
+
+            public Long getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public Integer getNumDiscs() {
+                return numDiscs;
+            }
+
+            public Integer getNumSongs() {
+                return numSongs;
+            }
+
+            public List<String> getPaths() {
+                return paths;
+            }
+
+            public Integer getYear() {
+                return year;
+            }
+
+            public void setDateAdded(Long dateAdded) {
+                this.dateAdded = dateAdded;
+            }
+
+            public void setId(Long id) {
+                this.id = id;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public void setNumDiscs(Integer numDiscs) {
+                this.numDiscs = numDiscs;
+            }
+
+            public void setNumSongs(Integer numSongs) {
+                this.numSongs = numSongs;
+            }
+
+            public void setPaths(List<String> paths) {
+                this.paths = paths;
+            }
+
+            public void setYear(Integer year) {
+                this.year = year;
+            }
+
+            public List<Artists> getArtists() {
+                return artists;
+            }
+
+            public void setArtists(List<Artists> artists) {
+                this.artists = artists;
+            }
+
+
+        }
+
+        private String name;
+        private List<AlbumData> albumData;
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public List<AlbumData> getAlbumData() {
+            return albumData;
+        }
+
+        public void setAlbumData(List<AlbumData> albumData) {
+            this.albumData = albumData;
+        }
+
     }
 
     public static class AlbumArtist {
+
+        @Override
+        public String toString() {
+            return "AlbumArtist [name=" + name + ", albumData=" + albumData + "]";
+        }
 
         public AlbumArtist() {
         }
 
         public static class AlbumData {
+
+            @Override
+            public String toString() {
+                return "AlbumData [albumArtistName=" + albumArtistName + ", artists=" + artists + ", dateAdded="
+                        + dateAdded + ", id=" + id + ", name=" + name + ", numDiscs=" + numDiscs + ", numSongs="
+                        + numSongs + ", paths=" + paths + ", year=" + year + "]";
+            }
+
 
             public AlbumData() {
             }
@@ -617,6 +802,8 @@ public class MusicAnalysisModel {
     public SongData song;
     public Album album;
     public AlbumArtistData albumArtistData;
+    public GenreData genre;
+    public AlbumArtist albumArtist;
 
     public AlbumArtistData getAlbumArtistData() {
         return albumArtistData;
@@ -625,10 +812,6 @@ public class MusicAnalysisModel {
     public void setAlbumArtistData(AlbumArtistData albumArtistData) {
         this.albumArtistData = albumArtistData;
     }
-
-    public GenreData genre;
-    public AlbumArtist albumArtist;
-
 
     public AlbumArtist getAlbumArtist() {
         return albumArtist;
@@ -673,10 +856,10 @@ public class MusicAnalysisModel {
             "song_file_size", "song_file_format", "song_id", "song_last_played",
             "song_name", "song_file_path", "song_play_count", "song_playList_id",
             "playList_play_order", "podcast", "song_sample_rate",
-            "track", "song_release_year", "album_artist_name", "album_id",
+            "track", "song_release_year",  "album_id",
             "album_name", "album_artist_name", "album_date_added", "album_release_year",
             "number_of_songs_in_album ", "number_of_discs_in_album", "album_artists",
-            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre",};
+            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre","albumArtist_name","albumArtist_AlbumData","albumArtistData_name","albumArtistData_AlbumData",};
 
 
     public Long getSeekPositionMs() {
@@ -809,7 +992,6 @@ public class MusicAnalysisModel {
                 (song == null || song.getSampleRateLabel() == null ? "" : song.getSampleRateLabel()),
                 (song == null || song.getTrack() == null ? "" : song.getTrack() + ""),
                 (song == null || song.getYear() == null ? "" : song.getYear() + ""),
-                (albumArtist == null || albumArtist.getName() == null ? "" : albumArtist.getName()),
                 (album == null || album.getId() == null ? "" : album.getId() + ""),
                 (album == null || album.getName() == null ? "" : album.getName()),
                 (album == null || album.getAlbumArtistName() == null ? "" : album.getAlbumArtistName()),
@@ -822,6 +1004,10 @@ public class MusicAnalysisModel {
                 (genre == null || genre.getId() == null ? "" : genre.getId() + ""),
                 (genre == null || genre.getName() == null ? "" : genre.getName()),
                 (genre == null || genre.getNumSong() == null ? "" : genre.getNumSong() + ""),
+                (albumArtist == null || albumArtist.getName() == null ? "" : albumArtist.getName()),
+                (albumArtist == null || albumArtist.getAlbumData() == null ? "" : albumArtist.getAlbumData() + ""),
+                (albumArtistData == null || albumArtistData.getName() == null ? "" : albumArtistData.getName()),
+                (albumArtistData == null || albumArtistData.getAlbumData() == null ? "" : albumArtistData.getAlbumData() + ""),
 
         };
     }
