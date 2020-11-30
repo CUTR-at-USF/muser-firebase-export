@@ -20,39 +20,43 @@ import java.util.List;
 
 import edu.usf.sas.pal.muser.utils.StringUtils;
 
-
 public class MusicAnalysisModel {
 
     public MusicAnalysisModel() {
     }
 
+    public MusicAnalysisModel(MusicAnalysisModel musicAnalysisModel, String recordId, String userId) {
+        this.recordId = recordId;
+        this.userId = userId;
+        this.song = musicAnalysisModel.getSongData();
+        this.album = musicAnalysisModel.getAlbumData();
+        this.albumArtist = musicAnalysisModel.getAlbumArtist();
+        this.albumArtistData = musicAnalysisModel.getAlbumArtistData();
+        this.genre = musicAnalysisModel.getGenreData();
+        this.eventPlayerType = musicAnalysisModel.getPlayerEventType();
+        this.eventUiType = musicAnalysisModel.getUiEventType();
+        this.eventCurrentTimeMs = musicAnalysisModel.getCurrentTimeMs();
+        this.eventNanoTime = musicAnalysisModel.getNanoTime();
+        this.eventSeekPositionMs = musicAnalysisModel.getSeekPositionMs();
+        this.eventStartTime = musicAnalysisModel.getStartTime();
+        this.eventElapsedTime = musicAnalysisModel.getElapsedTime();
+    }
 
+    /**
+     * Album Artist Data class to handle PLAY_ALBUM_ARTIST event
+     */
     public static class AlbumArtistData {
 
         public AlbumArtistData() {
 
         }
 
+        private String name;
+        private List<AlbumData> albumData;
+
         public static class AlbumData {
 
-            @Override
-            public String toString() {
-                return "AlbumData [albumArtistName=" + albumArtistName + ", artists=" + artists + ", dateAdded="
-                        + dateAdded + ", id=" + id + ", name=" + name + ", numDiscs=" + numDiscs + ", numSongs="
-                        + numSongs + ", paths=" + paths + ", year=" + year + "]";
-            }
-
-
             public AlbumData() {
-            }
-
-
-            public String getAlbumArtistName() {
-                return albumArtistName;
-            }
-
-            public void setAlbumArtistName(String albumArtistName) {
-                this.albumArtistName = albumArtistName;
             }
 
             private String albumArtistName;
@@ -65,14 +69,19 @@ public class MusicAnalysisModel {
             private List<String> paths;
             private Integer year;
 
+            public String getAlbumArtistName() {
+                return albumArtistName;
+            }
+
+            public void setAlbumArtistName(String albumArtistName) {
+                this.albumArtistName = albumArtistName;
+            }
+
             public static class Artists {
 
-                @Override
-                public String toString() {
-                    return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
-                            + numSongs + "";
-                }
+                public Artists() {
 
+                }
 
                 public long id;
                 public String name;
@@ -111,8 +120,10 @@ public class MusicAnalysisModel {
                     this.numSongs = numSongs;
                 }
 
-
-                public Artists() {
+                @Override
+                public String toString() {
+                    return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
+                            + numSongs + "";
                 }
             }
 
@@ -180,12 +191,14 @@ public class MusicAnalysisModel {
                 this.artists = artists;
             }
 
+            @Override
+            public String toString() {
+                return "AlbumData [albumArtistName=" + albumArtistName + ", artists=" + artists + ", dateAdded="
+                        + dateAdded + ", id=" + id + ", name=" + name + ", numDiscs=" + numDiscs + ", numSongs="
+                        + numSongs + ", paths=" + paths + ", year=" + year + "]";
+            }
 
         }
-
-        private String name;
-        private List<AlbumData> albumData;
-
 
         public String getName() {
             return name;
@@ -207,34 +220,15 @@ public class MusicAnalysisModel {
 
     public static class AlbumArtist {
 
-        @Override
-        public String toString() {
-            return "AlbumArtist [name=" + name + ", albumData=" + albumData + "]";
-        }
-
         public AlbumArtist() {
         }
 
+        private String name;
+        private List<AlbumData> albumData;
+
         public static class AlbumData {
 
-            @Override
-            public String toString() {
-                return "AlbumData [albumArtistName=" + albumArtistName + ", artists=" + artists + ", dateAdded="
-                        + dateAdded + ", id=" + id + ", name=" + name + ", numDiscs=" + numDiscs + ", numSongs="
-                        + numSongs + ", paths=" + paths + ", year=" + year + "]";
-            }
-
-
             public AlbumData() {
-            }
-
-
-            public String getAlbumArtistName() {
-                return albumArtistName;
-            }
-
-            public void setAlbumArtistName(String albumArtistName) {
-                this.albumArtistName = albumArtistName;
             }
 
             private String albumArtistName;
@@ -247,14 +241,18 @@ public class MusicAnalysisModel {
             private List<String> paths;
             private Integer year;
 
+            public String getAlbumArtistName() {
+                return albumArtistName;
+            }
+
+            public void setAlbumArtistName(String albumArtistName) {
+                this.albumArtistName = albumArtistName;
+            }
+
             public static class Artists {
 
-                @Override
-                public String toString() {
-                    return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
-                            + numSongs + "";
+                public Artists() {
                 }
-
 
                 public long id;
                 public String name;
@@ -293,9 +291,12 @@ public class MusicAnalysisModel {
                     this.numSongs = numSongs;
                 }
 
-
-                public Artists() {
+                @Override
+                public String toString() {
+                    return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
+                            + numSongs + "";
                 }
+
             }
 
             public Long getDateAdded() {
@@ -362,12 +363,14 @@ public class MusicAnalysisModel {
                 this.artists = artists;
             }
 
+            @Override
+            public String toString() {
+                return "AlbumData [albumArtistName=" + albumArtistName + ", artists=" + artists + ", dateAdded="
+                        + dateAdded + ", id=" + id + ", name=" + name + ", numDiscs=" + numDiscs + ", numSongs="
+                        + numSongs + ", paths=" + paths + ", year=" + year + "]";
+            }
 
         }
-
-        private String name;
-        private List<AlbumData> albumData;
-
 
         public String getName() {
             return name;
@@ -384,8 +387,12 @@ public class MusicAnalysisModel {
         public void setAlbumData(List<AlbumData> albumData) {
             this.albumData = albumData;
         }
-    }
 
+        @Override
+        public String toString() {
+            return "AlbumArtist [name=" + name + ", albumData=" + albumData + "]";
+        }
+    }
 
     public static class GenreData {
 
@@ -430,6 +437,9 @@ public class MusicAnalysisModel {
         }
     }
 
+    /**
+     * SongData class to handle music metadata
+     */
     public static class SongData {
 
         public SongData() {
@@ -609,7 +619,6 @@ public class MusicAnalysisModel {
             this.playlistID = playlistID;
         }
 
-
         public Integer getPlaylistPlayOrder() {
             return playlistPlayOrder;
         }
@@ -634,10 +643,11 @@ public class MusicAnalysisModel {
                     StringUtils.valueOf(playlistID), StringUtils.valueOf(playlistPlayOrder), StringUtils.valueOf(podCast),
                     sampleRateLabel, StringUtils.valueOf(track), StringUtils.valueOf(year),};
         }
-
-
     }
 
+    /**
+     * Album class to handle Album metadata
+     */
     public static class Album {
 
         public Album() {
@@ -652,7 +662,6 @@ public class MusicAnalysisModel {
         private Integer numSongs;
         private List<String> paths;
         private Integer year;
-
 
         public List<String> getPaths() {
             return paths;
@@ -672,12 +681,8 @@ public class MusicAnalysisModel {
 
         public static class Artists {
 
-            @Override
-            public String toString() {
-                return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
-                        + numSongs + "";
+            public Artists() {
             }
-
 
             public long id;
             public String name;
@@ -716,8 +721,10 @@ public class MusicAnalysisModel {
                 this.numSongs = numSongs;
             }
 
-
-            public Artists() {
+            @Override
+            public String toString() {
+                return "id=" + id + ", name=" + name + ", numAlbums=" + numAlbums + ", numSongs="
+                        + numSongs + "";
             }
         }
 
@@ -776,7 +783,6 @@ public class MusicAnalysisModel {
         public void setYear(Integer year) {
             this.year = year;
         }
-
     }
 
     public static String[] getCsvHeader() {
@@ -821,7 +827,6 @@ public class MusicAnalysisModel {
         this.albumArtist = albumArtist;
     }
 
-
     public GenreData getGenreData() {
         return genre;
     }
@@ -829,7 +834,6 @@ public class MusicAnalysisModel {
     public void setGenreData(GenreData genre) {
         this.genre = genre;
     }
-
 
     public SongData getSongData() {
         return song;
@@ -847,6 +851,9 @@ public class MusicAnalysisModel {
         this.album = album;
     }
 
+    /**
+     * CSV File headers
+     */
     public static final String[] CSV_HEADER = {
             "user_id", "record_id", "player_event_type", "ui_event_type",
             "event_current_time_in_nanoseconds", "nano_time_milliseconds",
@@ -856,11 +863,11 @@ public class MusicAnalysisModel {
             "song_file_size", "song_file_format", "song_id", "song_last_played",
             "song_name", "song_file_path", "song_play_count", "song_playList_id",
             "playList_play_order", "podcast", "song_sample_rate",
-            "track", "song_release_year",  "album_id",
+            "track", "song_release_year", "album_id",
             "album_name", "album_artist_name", "album_date_added", "album_release_year",
             "number_of_songs_in_album ", "number_of_discs_in_album", "album_artists",
-            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre","albumArtist_name","albumArtist_AlbumData","albumArtistData_name","albumArtistData_AlbumData",};
-
+            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre", "albumArtist_name", "albumArtist_AlbumData"
+    };
 
     public Long getSeekPositionMs() {
         return seekPositionMs;
@@ -882,7 +889,6 @@ public class MusicAnalysisModel {
         this.uiEventType = uiEventType;
     }
 
-
     public void setSeekPositionMs(Long seekPositionMs) {
         this.seekPositionMs = seekPositionMs;
     }
@@ -895,16 +901,13 @@ public class MusicAnalysisModel {
         this.playerEventType = playerEventType;
     }
 
-
     public Long getElapsedTime() {
         return elapsedTime;
     }
 
-
     public Long getStartTime() {
         return startTime;
     }
-
 
     public Long getCurrentTimeMs() {
         return currentTimeMs;
@@ -914,11 +917,9 @@ public class MusicAnalysisModel {
         return recordId;
     }
 
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
 
     public void setRecordId(String recordId) {
         this.recordId = recordId;
@@ -958,7 +959,6 @@ public class MusicAnalysisModel {
         eventElapsedTime = elapsedTime;
         return this;
     }
-
 
     public String[] toStringArray() {
         return new String[]{
@@ -1006,28 +1006,6 @@ public class MusicAnalysisModel {
                 (genre == null || genre.getNumSong() == null ? "" : genre.getNumSong() + ""),
                 (albumArtist == null || albumArtist.getName() == null ? "" : albumArtist.getName()),
                 (albumArtist == null || albumArtist.getAlbumData() == null ? "" : albumArtist.getAlbumData() + ""),
-                (albumArtistData == null || albumArtistData.getName() == null ? "" : albumArtistData.getName()),
-                (albumArtistData == null || albumArtistData.getAlbumData() == null ? "" : albumArtistData.getAlbumData() + ""),
-
         };
     }
-
-
-    public MusicAnalysisModel(MusicAnalysisModel musicAnalysisModel, String recordId, String userId) {
-        this.recordId = recordId;
-        this.userId = userId;
-        this.song = musicAnalysisModel.getSongData();
-        this.album = musicAnalysisModel.getAlbumData();
-        this.albumArtist = musicAnalysisModel.getAlbumArtist();
-        this.albumArtistData = musicAnalysisModel.getAlbumArtistData();
-        this.genre = musicAnalysisModel.getGenreData();
-        this.eventPlayerType = musicAnalysisModel.getPlayerEventType();
-        this.eventUiType = musicAnalysisModel.getUiEventType();
-        this.eventCurrentTimeMs = musicAnalysisModel.getCurrentTimeMs();
-        this.eventNanoTime = musicAnalysisModel.getNanoTime();
-        this.eventSeekPositionMs = musicAnalysisModel.getSeekPositionMs();
-        this.eventStartTime = musicAnalysisModel.getStartTime();
-        this.eventElapsedTime = musicAnalysisModel.getElapsedTime();
-    }
 }
-
