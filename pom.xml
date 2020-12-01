@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.usf.sas.pal.muser</groupId>
@@ -8,9 +8,9 @@
     <build>
         <plugins>
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -34,8 +34,7 @@
                 <version>3.1.0</version>
 
                 <configuration>
-                    <!-- Remove signature files in uber-jar preventing Invalid signature
-                        errors -->
+                    <!-- Remove signature files in uber-jar preventing Invalid signature errors -->
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -94,7 +93,6 @@
             <version>4.12</version>
         </dependency>
         <dependency>
-        
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.5</version>
