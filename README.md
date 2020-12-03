@@ -12,7 +12,7 @@ Setup Firebase Account
 Generate a admin private-key json file (e.g., admin-key.json) for your service account. To generate the key file follow the instructions in Firebase setup page.
 Run
 
-To run the application use java -jar command and pass the admin-key.json file as an argument: java -jar muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
+To run the application use java -jar command and pass the admin-key.json file as an argument: java -jar target/muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
 
 Additional Optional Command Line Arguments
 
