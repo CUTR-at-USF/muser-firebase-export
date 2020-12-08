@@ -1,6 +1,6 @@
 # muser-firebase-export ![Java CI with Maven](https://github.com/CUTR-at-USF/muser-firebase-export/workflows/Java%20CI%20with%20Maven/badge.svg)
 
-Java application to process Muser Music Analysis. The data collected by Muser and stored in Firebase Firestore.
+Java application to export music listening data collected with the [MUSER Android app](https://github.com/CUTR-at-USF/MUSER). Data is exported from Firebase Firestore to a CSV file.
 
 ## Build
 
