@@ -1,25 +1,30 @@
-README.md
-muser-firebase-export Build Status
+# muser-firebase-export
 
 Java application to process Muser Music Analysis. The data collected by Muser and stored in Firebase Firestore.
 
-Build
+## Build
 
-To build the application use mvn clean package command. This command will create a jar file (i.e., muser-0.0.1-SNAPSHOT.jar) under the target folder.
+To build the application use `mvn clean package` command. This command will create a jar file (i.e., muser-0.0.1-SNAPSHOT.jar) under the target folder.
 
-Setup Firebase Account
+## Setup Firebase Account
 
-Generate a admin private-key json file (e.g., admin-key.json) for your service account. To generate the key file follow the instructions in Firebase setup page.
-Run
+Generate a admin private-key json file (e.g., `admin-key.json`) for your service account. To generate the key file follow the instructions in Firebase setup page.
 
-To run the application use java -jar command and pass the admin-key.json file as an argument: java -jar target/muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
+## Run
 
-Additional Optional Command Line Arguments
+To run the application use `java -jar` command and pass the `admin-key.json` file as an argument: 
 
--userId <userId> Takes a user id as an argument and performs the analysis for that specific user. Example usage: -userId abcdef.
+```
+java -jar target/muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
+```
 
-License
+### Additional Optional Command Line Arguments
 
+`-userId <userId>` Takes a user id as an argument and performs the analysis for that specific user. Example usage: `-userId abcdef`.
+
+## License
+
+```
 /*
  * Copyright (C) 2019-2020 University of South Florida
  *
@@ -35,3 +40,4 @@ License
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ ```
