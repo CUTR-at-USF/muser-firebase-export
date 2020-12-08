@@ -2,6 +2,12 @@
 
 Java application to export music listening data collected with the [MUSER Android app](https://github.com/CUTR-at-USF/MUSER). Data is exported from Firebase Firestore to a CSV file.
 
+## Setup
+
+You'll need the following installed to build the project:
+* [JDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) or higher
+* [Apache Maven](https://maven.apache.org/download.cgi)
+
 ## Build
 
 To build the application use `mvn clean package` command. This command will create a jar file (i.e., muser-0.0.1-SNAPSHOT.jar) under the target folder.
