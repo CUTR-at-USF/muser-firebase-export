@@ -18,6 +18,7 @@ package edu.usf.sas.pal.muser.model;
 
 import java.util.List;
 
+import edu.usf.sas.pal.muser.model.MusicAnalysisModel.AudioData.VolumeData;
 import edu.usf.sas.pal.muser.utils.StringUtils;
 
 public class MusicAnalysisModel {
@@ -33,6 +34,7 @@ public class MusicAnalysisModel {
         this.albumArtist = musicAnalysisModel.getAlbumArtist();
         this.albumArtistData = musicAnalysisModel.getAlbumArtistData();
         this.genre = musicAnalysisModel.getGenreData();
+        this.audioData = musicAnalysisModel.getAudioData();
         this.eventPlayerType = musicAnalysisModel.getPlayerEventType();
         this.eventUiType = musicAnalysisModel.getUiEventType();
         this.eventCurrentTimeMs = musicAnalysisModel.getCurrentTimeMs();
@@ -785,6 +787,84 @@ public class MusicAnalysisModel {
         }
     }
 
+    /**
+     * Audio Data class to track the volume and output device on which the user is listening to.
+     */
+    public static class AudioData {
+
+        public AudioData() {
+
+        }
+
+        private String audioDeviceType;
+        public VolumeData volumeData;
+
+        public static class VolumeData {
+            public int currentVolumeLevel;
+            public int volumeMax;
+            public int volumeMin;
+            public double volumeDB;
+
+            @Override
+            public String toString() {
+                return "VolumeData [currentVolumeLevel=" + currentVolumeLevel + ", volumeMax=" + volumeMax
+                        + ", volumeMin=" + volumeMin + ", volumeDB=" + volumeDB + "]";
+            }
+
+            public VolumeData() {
+            }
+
+            public double getVolumeDB() {
+                return volumeDB;
+            }
+
+            public void setVolumeDB(double volumeDB) {
+                this.volumeDB = volumeDB;
+            }
+
+            public int getCurrentVolumeLevel() {
+                return currentVolumeLevel;
+            }
+
+            public void setCurrentVolumeLevel(int currentVolumeLevel) {
+                this.currentVolumeLevel = currentVolumeLevel;
+            }
+
+            public int getVolumeMax() {
+                return volumeMax;
+            }
+
+            public void setVolumeMax(int volumeMax) {
+                this.volumeMax = volumeMax;
+            }
+
+            public int getVolumeMin() {
+                return volumeMin;
+            }
+
+            public void setVolumeMin(int volumeMin) {
+                this.volumeMin = volumeMin;
+            }
+        }
+
+        public VolumeData getVolumeData() {
+            return volumeData;
+        }
+
+        public void setVolumeData(VolumeData volumeData) {
+            this.volumeData = volumeData;
+        }
+
+        public String getAudioDeviceType() {
+            return audioDeviceType;
+        }
+
+        public void setAudioDeviceType(String audioDeviceType) {
+            this.audioDeviceType = audioDeviceType;
+        }
+
+    }
+
     public static String[] getCsvHeader() {
         return CSV_HEADER;
     }
@@ -810,6 +890,8 @@ public class MusicAnalysisModel {
     public AlbumArtistData albumArtistData;
     public GenreData genre;
     public AlbumArtist albumArtist;
+    public AudioData audioData;
+    public VolumeData volumeData;
 
     public AlbumArtistData getAlbumArtistData() {
         return albumArtistData;
@@ -851,6 +933,14 @@ public class MusicAnalysisModel {
         this.album = album;
     }
 
+    public AudioData getAudioData() {
+        return audioData;
+    }
+
+    public void setAudioData(AudioData audioData) {
+        this.audioData = audioData;
+    }
+
     /**
      * CSV File headers
      */
@@ -866,7 +956,7 @@ public class MusicAnalysisModel {
             "track", "song_release_year", "album_id",
             "album_name", "album_artist_name", "album_date_added", "album_release_year",
             "number_of_songs_in_album ", "number_of_discs_in_album", "album_artists",
-            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre", "albumArtist_name", "albumArtist_AlbumData"
+            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre", "albumArtist_name", "albumArtist_AlbumData", "audio_DeviceType", "audio_VolumeData"
     };
 
     public Long getSeekPositionMs() {
@@ -1006,6 +1096,9 @@ public class MusicAnalysisModel {
                 (genre == null || genre.getNumSong() == null ? "" : genre.getNumSong() + ""),
                 (albumArtist == null || albumArtist.getName() == null ? "" : albumArtist.getName()),
                 (albumArtist == null || albumArtist.getAlbumData() == null ? "" : albumArtist.getAlbumData() + ""),
+                (audioData == null || audioData.getAudioDeviceType() == null ? "" : audioData.getAudioDeviceType() + ""),
+                (audioData == null || audioData.getVolumeData() == null ? "" : audioData.getVolumeData() + ""),
         };
     }
 }
+
