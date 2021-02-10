@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 package edu.usf.sas.pal.muser.options;
+
 public class ProgramOptions {
+
     private static ProgramOptions programOptions = null;
 
     private ProgramOptions() {
@@ -23,8 +25,12 @@ public class ProgramOptions {
 
     public static final String KEY_FILE = "keyFile";
     public static final String USER_ID = "userId";
+    public static final String START_DATE = "startDate";
+    public static final String END_DATE = "endDate";
     private String fileKeyPath;
     private String userId;
+    private String startDate;
+    private String endDate;
 
     public static ProgramOptions getInstance() {
         if (programOptions == null) {
@@ -48,6 +54,24 @@ public class ProgramOptions {
 
     public ProgramOptions setUserId(String userId) {
         this.userId = userId;
+        return this;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public ProgramOptions setStartDate(String startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public ProgramOptions setEndDate(String endDate) {
+        this.endDate = endDate;
         return this;
     }
 }

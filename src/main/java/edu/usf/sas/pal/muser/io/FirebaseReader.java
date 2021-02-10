@@ -15,6 +15,7 @@
  */
 
 package edu.usf.sas.pal.muser.io;
+
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
 import edu.usf.sas.pal.muser.constants.FirebaseConstants;
@@ -59,13 +60,33 @@ public class FirebaseReader {
         return FirebaseIOUtils.getAllUserIds(firestoreDB);
     }
 
-    public List<QueryDocumentSnapshot> getAllUserPlayerEventInfoById(String userId) {
-        return FirebaseIOUtils.getAllRecordIdsByUserIdAndFolder(firestoreDB, userId,
+    public List<QueryDocumentSnapshot> getPlayerEventInfoByUserId(String userId) {
+        return FirebaseIOUtils.getAllInfoByUserIdAndFolder(firestoreDB, userId,
                 FirebaseConstants.FIREBASE_PLAYER_EVENTS_FOLDER);
     }
 
-    public List<QueryDocumentSnapshot> getAllUserUiEventInfoById(String userId) {
-        return FirebaseIOUtils.getAllRecordIdsByUserIdAndFolder(firestoreDB, userId,
+    public List<QueryDocumentSnapshot> getUiEventInfoByUserId(String userId) {
+        return FirebaseIOUtils.getAllInfoByUserIdAndFolder(firestoreDB, userId,
                 FirebaseConstants.FIREBASE_UI_EVENTS_FOLDER);
+    }
+
+    public List<QueryDocumentSnapshot> getDeviceInfoByUserId(String userId) {
+        return FirebaseIOUtils.getAllInfoByUserIdAndFolder(firestoreDB, userId,
+                FirebaseConstants.FIREBASE_DEVICE_INFORMATION_FOLDER);
+    }
+
+    public List<QueryDocumentSnapshot> getInfoByDateRangeForPlayerEventInfo(String userId, long millisStart, long millisEnd) {
+        return FirebaseIOUtils.getAllInfoByDateRangeUserIdAndFolder(firestoreDB, userId, millisStart, millisEnd,
+                FirebaseConstants.FIREBASE_PLAYER_EVENTS_FOLDER);
+    }
+
+    public List<QueryDocumentSnapshot> getInfoByDateRangeForUiEventInfo(String userId, long millisStart, long millisEnd) {
+        return FirebaseIOUtils.getAllInfoByDateRangeUserIdAndFolder(firestoreDB, userId, millisStart, millisEnd,
+                FirebaseConstants.FIREBASE_UI_EVENTS_FOLDER);
+    }
+
+    public List<QueryDocumentSnapshot> getInfoByDateRangeForDeviceInfo(String userId, long millisStart, long millisEnd) {
+        return FirebaseIOUtils.getAllInfoByDateRangeUserIdAndFolder(firestoreDB, userId, millisStart, millisEnd,
+                FirebaseConstants.FIREBASE_DEVICE_INFORMATION_FOLDER);
     }
 }
