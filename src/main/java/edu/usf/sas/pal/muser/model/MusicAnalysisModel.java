@@ -17,7 +17,6 @@
 package edu.usf.sas.pal.muser.model;
 
 import java.util.List;
-
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel.AudioData.VolumeData;
 import edu.usf.sas.pal.muser.utils.StringUtils;
 
@@ -42,6 +41,16 @@ public class MusicAnalysisModel {
         this.eventSeekPositionMs = musicAnalysisModel.getSeekPositionMs();
         this.eventStartTime = musicAnalysisModel.getStartTime();
         this.eventElapsedTime = musicAnalysisModel.getElapsedTime();
+        this.deviceInfoAppVersion = musicAnalysisModel.getAppVersion();
+        this.deviceInfoDeviceModel = musicAnalysisModel.getDeviceModel();
+        this.deviceInfoGooglePlayServicesApp = musicAnalysisModel.getGooglePlayServicesApp();
+        this.deviceInfoGooglePlayServicesLib = musicAnalysisModel.getGooglePlayServicesLib();
+        this.deviceInfoIgnoringBatteryOptimizations = musicAnalysisModel.getIgnoringBatteryOptimizations();
+        this.deviceInfoPowerSaveModeEnabled = musicAnalysisModel.getPowerSaveModeEnabled();
+        this.deviceInfoSdkVersion = musicAnalysisModel.getSdkVersion();
+        this.deviceInfoSdkVersionInt = musicAnalysisModel.getSdkVersionInt();
+        this.deviceInfoTalkBackEnabled = musicAnalysisModel.getTalkBackEnabled();
+        this.deviceInfoTimestamp = musicAnalysisModel.getTimestamp();
     }
 
     /**
@@ -885,6 +894,69 @@ public class MusicAnalysisModel {
     private Long elapsedTime;
     private Long eventStartTime;
     private Long startTime;
+
+
+    private String appVersion;
+
+    public String getAppVersion() {
+        return appVersion;
+    }
+
+    public String getDeviceModel() {
+        return deviceModel;
+    }
+
+    public String getGooglePlayServicesApp() {
+        return googlePlayServicesApp;
+    }
+
+    public Long getGooglePlayServicesLib() {
+        return googlePlayServicesLib;
+    }
+
+    public Boolean getIgnoringBatteryOptimizations() {
+        return ignoringBatteryOptimizations;
+    }
+
+    public Boolean getPowerSaveModeEnabled() {
+        return powerSaveModeEnabled;
+    }
+
+    public String getSdkVersion() {
+        return sdkVersion;
+    }
+
+    public Long getSdkVersionInt() {
+        return sdkVersionInt;
+    }
+
+    public Boolean getTalkBackEnabled() {
+        return talkBackEnabled;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    private String deviceInfoAppVersion;
+    private String deviceModel;
+    private String deviceInfoDeviceModel;
+    private String googlePlayServicesApp;
+    private String deviceInfoGooglePlayServicesApp;
+    private Long googlePlayServicesLib;
+    private Long deviceInfoGooglePlayServicesLib;
+    private Boolean ignoringBatteryOptimizations;
+    private Boolean deviceInfoIgnoringBatteryOptimizations;
+    private Boolean powerSaveModeEnabled;
+    private Boolean deviceInfoPowerSaveModeEnabled;
+    private String sdkVersion;
+    private String deviceInfoSdkVersion;
+    private Long sdkVersionInt;
+    private Long deviceInfoSdkVersionInt;
+    private Boolean talkBackEnabled;
+    private Boolean deviceInfoTalkBackEnabled;
+    private String timestamp;
+    private String deviceInfoTimestamp;
     public SongData song;
     public Album album;
     public AlbumArtistData albumArtistData;
@@ -945,18 +1017,62 @@ public class MusicAnalysisModel {
      * CSV File headers
      */
     public static final String[] CSV_HEADER = {
-            "user_id", "record_id", "player_event_type", "ui_event_type",
-            "event_current_time_in_nanoseconds", "nano_time_milliseconds",
-            "event_seek_position_in_milliseconds", "event_start_time", "event_elapsed_time",
-            "song_album_id", "song_album_name", "song_artist_id", "song_artist_name",
-            "song_bit_rate", "song_date_added", "song_disc_number", "song_duration",
-            "song_file_size", "song_file_format", "song_id", "song_last_played",
-            "song_name", "song_file_path", "song_play_count", "song_playList_id",
-            "playList_play_order", "podcast", "song_sample_rate",
-            "track", "song_release_year", "album_id",
-            "album_name", "album_artist_name", "album_date_added", "album_release_year",
-            "number_of_songs_in_album ", "number_of_discs_in_album", "album_artists",
-            "album_paths", "genre_id", "genre_name", "number_of_songs_for_genre", "albumArtist_name", "albumArtist_AlbumData", "audio_DeviceType", "audio_VolumeData"
+            "user_id",
+            "record_id",
+            "player_event_type",
+            "ui_event_type",
+            "event_current_time_in_milliseconds",
+            "event_nano_time",
+            "event_seek_position_in_milliseconds",
+            "event_start_time",
+            "event_elapsed_time",
+            "song_album_id",
+            "song_album_name",
+            "song_artist_id",
+            "song_artist_name",
+            "song_bit_rate",
+            "song_date_added",
+            "song_disc_number",
+            "song_duration",
+            "song_file_size",
+            "song_file_format",
+            "song_id",
+            "song_last_played",
+            "song_name",
+            "song_file_path",
+            "song_play_count",
+            "song_playlist_id",
+            "playlist_play_order",
+            "podcast",
+            "song_sample_rate",
+            "track",
+            "song_release_year",
+            "album_id",
+            "album_name",
+            "album_artist_name",
+            "album_date_added",
+            "album_release_year",
+            "number_of_songs_in_album",
+            "number_of_discs_in_album",
+            "album_artists",
+            "album_paths",
+            "genre_id",
+            "genre_name",
+            "number_of_songs_for_genre",
+            "album_artist_name",
+            "album_artist_album_data",
+            "audio_devic_type",
+            "audio_volume_data",
+            "device_info_app_version",
+            "device_info_device_model",
+            "device_info_google_play_services_app",
+            "device_info_google_play_services_lib",
+            "device_info_ignoring_battery_optimizations",
+            "device_info_power_save_mode_enabled",
+            "device_info_sdk_version",
+            "device_info_sdk_version_int",
+            "device_info_talk_back_enabled",
+            "device_info_timestamp",
     };
 
     public Long getSeekPositionMs() {
@@ -1050,6 +1166,56 @@ public class MusicAnalysisModel {
         return this;
     }
 
+    public MusicAnalysisModel setDeviceInfoAppVersion(String appVersion) {
+        deviceInfoAppVersion = appVersion;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoDeviceModel(String deviceModel) {
+        deviceInfoDeviceModel = deviceModel;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoGooglePlayServicesApp(String googlePlayServicesApp) {
+        deviceInfoGooglePlayServicesApp = googlePlayServicesApp;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoGooglePlayServicesLib(Long googlePlayServicesLib) {
+        deviceInfoGooglePlayServicesLib = googlePlayServicesLib;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoIgnoringBatteryOptimizations(Boolean ignoringBatteryOptimizations) {
+        deviceInfoIgnoringBatteryOptimizations = ignoringBatteryOptimizations;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoPowerSaveModeEnabled(Boolean powerSaveModeEnabled) {
+        deviceInfoPowerSaveModeEnabled = powerSaveModeEnabled;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoSdkVersion(String sdkVersion) {
+        deviceInfoSdkVersion = sdkVersion;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoSdkVersionInt(Long sdkVersionInt) {
+        deviceInfoSdkVersionInt = sdkVersionInt;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoTalkBackEnabled(Boolean talkBackEnabled) {
+        deviceInfoTalkBackEnabled = talkBackEnabled;
+        return this;
+    }
+
+    public MusicAnalysisModel setDeviceInfoTimestamp(String timestamp) {
+        deviceInfoTimestamp = timestamp;
+        return this;
+    }
+
     public String[] toStringArray() {
         return new String[]{
                 userId,
@@ -1098,6 +1264,16 @@ public class MusicAnalysisModel {
                 (albumArtist == null || albumArtist.getAlbumData() == null ? "" : albumArtist.getAlbumData() + ""),
                 (audioData == null || audioData.getAudioDeviceType() == null ? "" : audioData.getAudioDeviceType() + ""),
                 (audioData == null || audioData.getVolumeData() == null ? "" : audioData.getVolumeData() + ""),
+                deviceInfoAppVersion,
+                deviceInfoDeviceModel,
+                deviceInfoGooglePlayServicesApp,
+                StringUtils.valueOf(deviceInfoGooglePlayServicesLib),
+                StringUtils.valueOf(deviceInfoIgnoringBatteryOptimizations),
+                StringUtils.valueOf(deviceInfoPowerSaveModeEnabled),
+                deviceInfoSdkVersion,
+                StringUtils.valueOf(deviceInfoSdkVersionInt),
+                StringUtils.valueOf(deviceInfoTalkBackEnabled),
+                deviceInfoTimestamp,
         };
     }
 }
