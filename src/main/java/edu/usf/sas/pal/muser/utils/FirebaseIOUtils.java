@@ -6,22 +6,23 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class FirebaseIOUtils {
-    // fetch list of users
+    
     public static List<QueryDocumentSnapshot> getAllUserIds(Firestore db) {
+    	// fetch list of users
         CollectionReference collectionReference = db.collection("users");
         return getQueryDocumentSnapshots(collectionReference);
     }
 
-    // fetch data of specify user
     public static List<QueryDocumentSnapshot> getAllInfoByUserIdAndFolder(Firestore db, String userId,
                                                                           String folder) {
+    	// fetch data of specify user
         CollectionReference cr = db.collection("users/" + userId + "/" + folder);
         return getQueryDocumentSnapshots(cr);
     }
-
-    // fetch data based on date range
+    
     public static List<QueryDocumentSnapshot> getAllInfoByDateRangeUserIdAndFolder(Firestore db, String userId, long millisStart, long millisEnd,
                                                                                    String folder) {
+    	// fetch data based on date range
         CollectionReference cr = db.collection("users/" + userId + "/" + folder);
         Query dateQuery = cr.orderBy("currentTimeMs").startAt(millisStart).endAt(millisEnd);
         return getQuerySnapshots(dateQuery);
