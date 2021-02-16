@@ -1,4 +1,3 @@
-
 /*
 –	Copyright (C) 2019-2020 University of South Florida
  *
@@ -22,20 +21,15 @@ import edu.usf.sas.pal.muser.options.ProgramOptions;
 import org.apache.commons.cli.*;
 
 /**
- * –	Main class to set the user id and Admin key file path passed by user through commond line arrguments.
+ * –	–	Main class to set the user id and Admin key file path passed by user through commond line arrguments.
  */
 public class ProcessorMain {
     public static void main(String[] args) {
-
         Options options = createCommandLineOptions();
-
         ProgramOptions programOptions = ProgramOptions.getInstance();
-
         CommandLineParser parser = new DefaultParser();
-
         try {
             CommandLine cmd = parser.parse(options, args);
-
             if (cmd.hasOption(ProgramOptions.KEY_FILE)) {
                 programOptions.setFileKeyPath(cmd.getOptionValue(ProgramOptions.KEY_FILE));
             } else {
@@ -43,22 +37,16 @@ public class ProcessorMain {
                         "Provide an admin key using -keyFile path/to/file.json");
                 return;
             }
-
             if (cmd.hasOption(ProgramOptions.USER_ID)) {
                 programOptions.setUserId(cmd.getOptionValue(ProgramOptions.USER_ID));
             }
-
-            if (cmd.hasOption(ProgramOptions.START_DATE)) {
+            if (cmd.hasOption(ProgramOptions.START_DATE) && cmd.hasOption(ProgramOptions.END_DATE)) {
                 programOptions.setStartDate(cmd.getOptionValue(ProgramOptions.START_DATE));
-            }
-
-            if (cmd.hasOption(ProgramOptions.END_DATE)) {
                 programOptions.setEndDate(cmd.getOptionValue(ProgramOptions.END_DATE));
             }
         } catch (ParseException e) {
             System.err.println("Invalid command line options");
         }
-
         System.out.println("Analysis started!");
         try {
             new MuserMusicDataAnalysisManager().processData();
@@ -72,8 +60,8 @@ public class ProcessorMain {
         Options options = new Options();
         options.addOption(ProgramOptions.USER_ID, true, "Only run the analysis for specific user");
         options.addOption(ProgramOptions.KEY_FILE, true, "Admin key file of the Firebase account");
-        options.addOption(ProgramOptions.START_DATE, true, "Start date to collect filtered data based on date range");
-        options.addOption(ProgramOptions.END_DATE, true, "End date to collect filtered data based on date range");
+        options.addOption(ProgramOptions.START_DATE, true, "Start date to collect filtered data based on date range and the format used to represent the start date is 'yyyy-MM-dd'");
+        options.addOption(ProgramOptions.END_DATE, true, "End date to collect filtered data based on date range and the format used to represent the end date is 'yyyy-MM-dd'");
         return options;
     }
 }
