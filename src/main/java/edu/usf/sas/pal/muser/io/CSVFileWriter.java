@@ -19,6 +19,7 @@ package edu.usf.sas.pal.muser.io;
 import com.opencsv.CSVWriter;
 import edu.usf.sas.pal.muser.constants.FirebaseConstants;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,13 +44,13 @@ public class CSVFileWriter {
         csvWriter.writeNext(header);
     }
 
-    public void appendAllToCSV(List<MusicAnalysisModel> musicAnalysisModel) {
+    public void appendAllToCsv(List<MusicAnalysisModel> musicAnalysisModel) {
         for (MusicAnalysisModel mam : musicAnalysisModel) {
-            appendToCsV(mam);
+            appendToCsv(mam);
         }
     }
 
-    private void appendToCsV(MusicAnalysisModel musicAnalysisModel) {
+    private void appendToCsv(MusicAnalysisModel musicAnalysisModel) {
         csvWriter.writeNext(musicAnalysisModel.toStringArray());
     }
 
