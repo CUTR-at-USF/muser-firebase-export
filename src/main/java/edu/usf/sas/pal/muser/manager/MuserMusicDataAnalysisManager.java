@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package edu.usf.sas.pal.muser.manager;
 
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -21,7 +22,8 @@ import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +47,38 @@ public class MuserMusicDataAnalysisManager {
     public void processData() {
         // create csv file and add the header
         csvFileWriter.createHeader(MusicAnalysisModel.CSV_HEADER);
-        if (programOptions.getUserId() == null) {
+
+        if (programOptions.getStartDate() != null && programOptions.getEndDate() != null && programOptions.getUserId() == null) {
+            //it will enter if loop if only date range is provided
+            if (getStartDateInMillis() < getEndDateInMillis()) {
+                //Start date should be less then end date
+                filterUsersDataByDataRange(getStartDateInMillis(), getEndDateInMillis());
+            } else {
+                System.err.println("Start date range is greater then End date range");
+                return;
+            }
+        } else if (programOptions.getStartDate() != null && programOptions.getEndDate() != null && programOptions.getUserId() != null) {
+            // it will enter this else if loop if a specific user date range is required
+            if (getStartDateInMillis() < getEndDateInMillis()) {
+                //Start date should be less then end date 
+                filterParticularUsersDataByDataRange(getStartDateInMillis(), getEndDateInMillis(), programOptions.getUserId());
+
+            } else {
+                System.err.println("Start date range is greater then End date range");
+                return;
+            }
+        } else if (programOptions.getUserId() == null) {
+            // this loop will fetch data from entire database
             // analyze all data and append the data in the csv file
             analyzeAllUsersMusicData();
         } else {
+            //this loop will run for a specific user info input
             // analyze specific user data
             processUserByIdForPlayerEvent(programOptions.getUserId());
             processUserByIdForUiEvent(programOptions.getUserId());
+            processUserByIdForDeviceInfo(programOptions.getUserId());
         }
-        //close the csv file
+        //close the CSV file
         csvFileWriter.closeWriter();
     }
 
@@ -62,27 +87,90 @@ public class MuserMusicDataAnalysisManager {
         for (QueryDocumentSnapshot doc : allUserIds) {
             processUserByIdForPlayerEvent(doc.getId());
             processUserByIdForUiEvent(doc.getId());
+            processUserByIdForDeviceInfo(doc.getId());
         }
     }
 
-    private void processUserByIdForPlayerEvent(String userId) {
+    private void filterUsersDataByDataRange(long millisStart, long millisEnd) {
+        List<QueryDocumentSnapshot> allUserIds = firebaseReader.getAllUserIds();
+        for (QueryDocumentSnapshot doc : allUserIds) {
+            processUserByDateRangeForPlayerEvent(doc.getId(), millisStart, millisEnd);
+            processUserByIdDateRangeForUiEvent(doc.getId(), millisStart, millisEnd);
+            processUserByIdDateRangeForDeviceInfo(doc.getId(), millisStart, millisEnd);
+        }
+    }
 
-        List<QueryDocumentSnapshot> userPlayerEventInfoById = new ArrayList<>(firebaseReader.getAllUserPlayerEventInfoById(userId));
+    private void filterParticularUsersDataByDataRange(long millisStart, long millisEnd, String userId) {
+        processUserByDateRangeForPlayerEvent(userId, millisStart, millisEnd);
+        processUserByIdDateRangeForUiEvent(userId, millisStart, millisEnd);
+        processUserByIdDateRangeForDeviceInfo(userId, millisStart, millisEnd);
+    }
+
+    private void processUserByIdForPlayerEvent(String userId) {
+        //get data of Player Events collection based on user id
+        List<QueryDocumentSnapshot> userPlayerEventInfoById = new ArrayList<>(firebaseReader.getPlayerEventInfoByUserId(userId));
         for (QueryDocumentSnapshot doc : userPlayerEventInfoById) {
-            MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class), doc.getId(), userId);
-            musicAnalysisList.add(mam);
-            csvFileWriter.appendAllToCsV(musicAnalysisList);
-            musicAnalysisList.clear();
+            writeUserInfoToCsv(doc, userId);
         }
     }
 
     private void processUserByIdForUiEvent(String userId) {
-        List<QueryDocumentSnapshot> userUiEventInfoById = new ArrayList<>(firebaseReader.getAllUserUiEventInfoById(userId));
+        //get data of UI Events collection based on user id
+        List<QueryDocumentSnapshot> userUiEventInfoById = new ArrayList<>(firebaseReader.getUiEventInfoByUserId(userId));
         for (QueryDocumentSnapshot doc : userUiEventInfoById) {
-            MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class), doc.getId(), userId);
-            musicAnalysisList.add(mam);
-            csvFileWriter.appendAllToCsV(musicAnalysisList);
-            musicAnalysisList.clear();
+            writeUserInfoToCsv(doc, userId);
         }
+    }
+
+    private void processUserByIdForDeviceInfo(String userId) {
+        //get data of Device info  collection based on user id
+        List<QueryDocumentSnapshot> userDeviceInfoById = new ArrayList<>(firebaseReader.getDeviceInfoByUserId(userId));
+        for (QueryDocumentSnapshot doc : userDeviceInfoById) {
+            writeUserInfoToCsv(doc, userId);
+        }
+    }
+
+    private void processUserByDateRangeForPlayerEvent(String userId, long millisStart, long millisEnd) {
+        //get data of Player Events collection based on date range and user id
+        List<QueryDocumentSnapshot> userByDateRangeForPlayerEvent = new ArrayList<>(firebaseReader.getInfoByDateRangeForPlayerEventInfo(userId, millisStart, millisEnd));
+        for (QueryDocumentSnapshot doc : userByDateRangeForPlayerEvent) {
+            writeUserInfoToCsv(doc, userId);
+        }
+    }
+
+    private void processUserByIdDateRangeForUiEvent(String userId, long millisStart, long millisEnd) {
+        //get data of Ui Events info collection on date range and user id
+        List<QueryDocumentSnapshot> userByIdDateRangeForUiEvent = new ArrayList<>(firebaseReader.getInfoByDateRangeForUiEventInfo(userId, millisStart, millisEnd));
+        for (QueryDocumentSnapshot doc : userByIdDateRangeForUiEvent) {
+            writeUserInfoToCsv(doc, userId);
+        }
+    }
+
+    private void processUserByIdDateRangeForDeviceInfo(String userId, long millisStart, long millisEnd) {
+        //get data of device info collection on date range and user id
+        List<QueryDocumentSnapshot> userByIdDateRangeForUiEvent = new ArrayList<>(firebaseReader.getInfoByDateRangeForUiEventInfo(userId, millisStart, millisEnd));
+        for (QueryDocumentSnapshot doc : userByIdDateRangeForUiEvent) {
+            writeUserInfoToCsv(doc, userId);
+        }
+    }
+
+    private void writeUserInfoToCsv(QueryDocumentSnapshot doc, String userId) {
+        //Write the Music Analysis Model to CSV
+        MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class), doc.getId(), userId);
+        musicAnalysisList.add(mam);
+        csvFileWriter.appendAllToCsv(musicAnalysisList);
+        musicAnalysisList.clear();
+    }
+
+    public long getStartDateInMillis() {
+        //below method converts start date to milliseconds
+        LocalDate startDate = LocalDate.parse(programOptions.getStartDate());
+        return startDate.atStartOfDay(ZoneId.of("America/New_York")).toInstant().toEpochMilli();
+    }
+
+    private long getEndDateInMillis() {
+        //below method converts end date to milliseconds
+        LocalDate endDate = LocalDate.parse(programOptions.getEndDate());
+        return endDate.atStartOfDay(ZoneId.of("America/New_York")).toInstant().toEpochMilli();
     }
 }
