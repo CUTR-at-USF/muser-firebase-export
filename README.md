@@ -16,12 +16,12 @@ To run the application use java -jar command and pass the admin-key.json file as
 
 Additional Optional Command Line Arguments
 
--userId <userId> Takes a user id as an argument and performs the analysis for that specific user. Example usage: -userId abcdef
+`-userId <userId>` Takes a user id as an argument and performs the analysis for that specific user. Example usage: `-userId abcdef`
 
--startDate <startDate> The date specifying an start of a Range. ISO 8601 standard format is used to represent the end date 'yyyy-MM-dd' Example usage: -startDate 2019-01-01
+`-startDate <startDate>`The date specifying an start of a Range. ISO 8601 standard format is used to represent the end date `'yyyy-MM-dd'` Example usage: `-startDate  2019-01-01`
 
 
--endDate <endDate> The date specifying an end of a range. ISO 8601 standard format is used to represent the end date 'yyyy-MM-dd' Example usage: -endDate 2019-12-31
+`-endDate <endDate>` The date specifying an end of a range. ISO 8601 standard format is used to represent the end date `'yyyy-MM-dd'` Example usage: `-endDate 2019-12-31`
 
 License
 
