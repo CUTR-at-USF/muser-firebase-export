@@ -1,30 +1,40 @@
-README.md
-muser-firebase-export Build Status
+# muser-firebase-export ![Java CI with Maven](https://github.com/CUTR-at-USF/muser-firebase-export/workflows/Java%20CI%20with%20Maven/badge.svg)
 
-Java application to process Muser Music Analysis. The data collected by Muser and stored in Firebase Firestore.
+Java application to export music listening data collected with the [MUSER Android app](https://github.com/CUTR-at-USF/MUSER). Data is exported from Firebase Firestore to a CSV file.
 
-Build
+## Setup
 
-To build the application use mvn clean package command. This command will create a jar file (i.e., muser-0.0.1-SNAPSHOT.jar) under the target folder.
+You'll need the following installed to build the project:
+* [JDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) or higher
+* [Apache Maven](https://maven.apache.org/download.cgi)
 
-Setup Firebase Account
+## Build
 
-Generate a admin private-key json file (e.g., admin-key.json) for your service account. To generate the key file follow the instructions in Firebase setup page.
-Run
+To build the application use `mvn clean package` command. This command will create a jar file (i.e., muser-0.0.1-SNAPSHOT.jar) under the target folder.
 
-To run the application use java -jar command and pass the admin-key.json file as an argument: java -jar muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
+## Setup Firebase Account
 
-Additional Optional Command Line Arguments
+Generate a admin private-key json file (e.g., `admin-key.json`) for your service account. To generate the key file follow the instructions in Firebase setup page.
 
-`-userId <userId>` Takes a user id as an argument and performs the analysis for that specific user. Example usage: `-userId abcdef`
+## Run
 
-`-startDate <startDate>`The date specifying an start of a Range. ISO 8601 standard format is used to represent the end date `'yyyy-MM-dd'` Example usage: `-startDate  2019-01-01`
+To run the application use `java -jar` command and pass the `admin-key.json` file as an argument: 
 
+```
+java -jar target/muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
+```
 
-`-endDate <endDate>` The date specifying an end of a range. ISO 8601 standard format is used to represent the end date `'yyyy-MM-dd'` Example usage: `-endDate 2019-12-31`
+### Additional Optional Command Line Arguments
 
-License
+* `-userId <userId>` Takes a user id as an argument and performs the analysis for that specific user. Example usage:
+`-userId abcdef`.
+* `-startDate <mm-dd-yyyy> -endDate <mm-dd-yyyy>` Takes two dates as argument and performs the analysis for activities in
+  the specific date range. The filter will assume the dates in the UTC timezone. Example usage:
+  `-startDate 05-05-2021 -endDate 07-15-2021` will perform the analysis from May 05, 2021 00:00:00, to July 15, 2021 00:00:00.
 
+## License
+
+```
 /*
  * Copyright (C) 2019-2020 University of South Florida
  *
@@ -40,3 +50,4 @@ License
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ ```
