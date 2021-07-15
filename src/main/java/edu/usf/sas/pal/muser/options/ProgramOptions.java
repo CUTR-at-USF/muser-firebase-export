@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2019-2020 University of South Florida
  *
@@ -24,13 +23,25 @@ public class ProgramOptions {
     }
 
     public static final String KEY_FILE = "keyFile";
+
     public static final String USER_ID = "userId";
+
+    // Start date option to perform a document search
     public static final String START_DATE = "startDate";
+
+    // End date option to perform a document search
     public static final String END_DATE = "endDate";
+
+    // Time zone used to parse the date parameters
+    public  static final String TIME_ZONE = "Etc/UTC";
+
     private String fileKeyPath;
+
     private String userId;
-    private String startDate;
-    private String endDate;
+
+    private long startDate = 0;
+
+    private long endDate = 0;
 
     public static ProgramOptions getInstance() {
         if (programOptions == null) {
@@ -57,20 +68,20 @@ public class ProgramOptions {
         return this;
     }
 
-    public String getStartDate() {
+    public long getStartDate() {
         return startDate;
     }
 
-    public ProgramOptions setStartDate(String startDate) {
+    public ProgramOptions setStartDate(long startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public String getEndDate() {
+    public long getEndDate() {
         return endDate;
     }
 
-    public ProgramOptions setEndDate(String endDate) {
+    public ProgramOptions setEndDate(long endDate) {
         this.endDate = endDate;
         return this;
     }
