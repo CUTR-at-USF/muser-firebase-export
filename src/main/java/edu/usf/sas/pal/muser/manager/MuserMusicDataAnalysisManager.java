@@ -22,8 +22,7 @@ import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
-import java.time.LocalDate;
-import java.time.ZoneId;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,22 +47,26 @@ public class MuserMusicDataAnalysisManager {
         // create csv file and add the header
         csvFileWriter.createHeader(MusicAnalysisModel.CSV_HEADER);
 
-        if (programOptions.getStartDate() != null && programOptions.getEndDate() != null && programOptions.getUserId() == null) {
-            //it will enter if loop if only date range is provided
-            if (getStartDateInMillis() < getEndDateInMillis()) {
-                //Start date should be less then end date
-                filterUsersDataByDataRange(getStartDateInMillis(), getEndDateInMillis());
+        long startDateMillis = programOptions.getStartDate();
+        long endDateMillis = programOptions.getEndDate();
+
+        if (startDateMillis > 0 && endDateMillis > 0 && programOptions.getUserId() == null) {
+            // Only date range is provided, make a filtered query for all users using date range
+            if (startDateMillis < endDateMillis) {
+                // Valid query, start date is less than end date
+                filterUsersDataByDataRange(startDateMillis, endDateMillis);
             } else {
+                // Invalid query
                 System.err.println("Start date range is greater then End date range");
                 return;
             }
-        } else if (programOptions.getStartDate() != null && programOptions.getEndDate() != null && programOptions.getUserId() != null) {
-            // it will enter this else if loop if a specific user date range is required
-            if (getStartDateInMillis() < getEndDateInMillis()) {
-                //Start date should be less then end date 
-                filterParticularUsersDataByDataRange(getStartDateInMillis(), getEndDateInMillis(), programOptions.getUserId());
-
+        } else if (startDateMillis > 0 && endDateMillis > 0 && programOptions.getUserId() != null) {
+            // Both user and date range is provided, make a filtered query for specific user using date range
+            if (startDateMillis < endDateMillis) {
+                // Valid query, start date is less than end date
+                filterParticularUsersDataByDataRange(startDateMillis, endDateMillis, programOptions.getUserId());
             } else {
+                // Invalid query
                 System.err.println("Start date range is greater then End date range");
                 return;
             }
@@ -162,15 +165,4 @@ public class MuserMusicDataAnalysisManager {
         musicAnalysisList.clear();
     }
 
-    public long getStartDateInMillis() {
-        //below method converts start date to milliseconds
-        LocalDate startDate = LocalDate.parse(programOptions.getStartDate());
-        return startDate.atStartOfDay(ZoneId.of("America/New_York")).toInstant().toEpochMilli();
-    }
-
-    private long getEndDateInMillis() {
-        //below method converts end date to milliseconds
-        LocalDate endDate = LocalDate.parse(programOptions.getEndDate());
-        return endDate.atStartOfDay(ZoneId.of("America/New_York")).toInstant().toEpochMilli();
-    }
 }
