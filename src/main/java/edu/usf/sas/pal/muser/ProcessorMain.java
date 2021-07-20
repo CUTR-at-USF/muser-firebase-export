@@ -18,6 +18,7 @@ package edu.usf.sas.pal.muser;
 import edu.usf.sas.pal.muser.exception.FirebaseFileNotInitializedException;
 import edu.usf.sas.pal.muser.manager.MuserMusicDataAnalysisManager;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
+import edu.usf.sas.pal.muser.utils.DateTimeUtil;
 import edu.usf.sas.pal.muser.utils.StringUtils;
 import org.apache.commons.cli.*;
 /**
@@ -48,10 +49,10 @@ public class ProcessorMain {
                 long dateStartMillis = StringUtils.validateStringDateAndParseToMillis(cmd.getOptionValue(ProgramOptions.START_DATE));
                 long dateEndMillis = StringUtils.validateStringDateAndParseToMillis(cmd.getOptionValue(ProgramOptions.END_DATE));
 
-                //Validate dates
-                if (dateStartMillis == 0 || dateEndMillis == 0) {
+                // Validate dates
+                if (!DateTimeUtil.validateDatesProvided(dateStartMillis, dateEndMillis)) {
                     System.err.println("Invalid start/end dates provided. \n" +
-                            "Please provide dates in using the format mm-dd-yyyy.");
+                            "Please provide dates in the format mm-dd-yyyy, where startDate is less than endDate.");
                     return;
                 }
                 programOptions.setStartDate(dateStartMillis);
@@ -83,8 +84,8 @@ public class ProcessorMain {
         Options options = new Options();
         options.addOption(ProgramOptions.USER_ID, true, "Only run the analysis for specific user");
         options.addOption(ProgramOptions.KEY_FILE, true, "Admin key file of the Firebase account");
-        options.addOption(ProgramOptions.START_DATE, true, "Start date (mm-dd-yyyy) to filter data collection based on a date range.");
-        options.addOption(ProgramOptions.END_DATE, true, "End date (mm-dd-yyyy) to filter data collection based on a date range.");
+        options.addOption(ProgramOptions.START_DATE, true, "Start date (mm-dd-yyyy) to filter data collection based on a date range. Midnight UTC time is used for the provided date.");
+        options.addOption(ProgramOptions.END_DATE, true, "End date (mm-dd-yyyy) to filter data collection based on a date range. Midnight UTC time is used for the provided date.");
         return options;
     }
 }
