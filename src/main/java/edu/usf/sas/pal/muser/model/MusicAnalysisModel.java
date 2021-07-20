@@ -1273,7 +1273,7 @@ public class MusicAnalysisModel {
                 deviceInfoSdkVersion,
                 StringUtils.valueOf(deviceInfoSdkVersionInt),
                 StringUtils.valueOf(deviceInfoTalkBackEnabled),
-                deviceInfoTimestamp,
+                deviceInfoTimestamp
         };
     }
 }
