@@ -22,6 +22,7 @@ import edu.usf.sas.pal.muser.io.CSVFileWriter;
 import edu.usf.sas.pal.muser.io.FirebaseReader;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel;
 import edu.usf.sas.pal.muser.options.ProgramOptions;
+import edu.usf.sas.pal.muser.utils.DateTimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,38 +51,26 @@ public class MuserMusicDataAnalysisManager {
         long startDateMillis = programOptions.getStartDate();
         long endDateMillis = programOptions.getEndDate();
 
-        if (startDateMillis > 0 && endDateMillis > 0 && programOptions.getUserId() == null) {
-            // Only date range is provided, make a filtered query for all users using date range
-            if (startDateMillis < endDateMillis) {
-                // Valid query, start date is less than end date
+        if (DateTimeUtil.validateDatesProvided(startDateMillis, endDateMillis)) {
+            // Valid date range provided
+            if (programOptions.getUserId() == null) {
+                // Filtered query for all users using date range
                 filterUsersDataByDataRange(startDateMillis, endDateMillis);
             } else {
-                // Invalid query
-                System.err.println("Start date range is greater then End date range");
-                return;
-            }
-        } else if (startDateMillis > 0 && endDateMillis > 0 && programOptions.getUserId() != null) {
-            // Both user and date range is provided, make a filtered query for specific user using date range
-            if (startDateMillis < endDateMillis) {
-                // Valid query, start date is less than end date
+                // Filtered query for a specific user using date range
                 filterParticularUsersDataByDataRange(startDateMillis, endDateMillis, programOptions.getUserId());
-            } else {
-                // Invalid query
-                System.err.println("Start date range is greater then End date range");
-                return;
             }
         } else if (programOptions.getUserId() == null) {
-            // this loop will fetch data from entire database
-            // analyze all data and append the data in the csv file
+            // Fetch and analyze the entire database for all users
             analyzeAllUsersMusicData();
         } else {
-            //this loop will run for a specific user info input
-            // analyze specific user data
+            // Fetch and analyze the database for a specific user
             processUserByIdForPlayerEvent(programOptions.getUserId());
             processUserByIdForUiEvent(programOptions.getUserId());
             processUserByIdForDeviceInfo(programOptions.getUserId());
         }
-        //close the CSV file
+
+        // close the CSV file
         csvFileWriter.closeWriter();
     }
 
@@ -110,7 +99,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByIdForPlayerEvent(String userId) {
-        //get data of Player Events collection based on user id
+        // get data of Player Events collection based on user id
         List<QueryDocumentSnapshot> userPlayerEventInfoById = new ArrayList<>(firebaseReader.getPlayerEventInfoByUserId(userId));
         for (QueryDocumentSnapshot doc : userPlayerEventInfoById) {
             writeUserInfoToCsv(doc, userId);
@@ -118,7 +107,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByIdForUiEvent(String userId) {
-        //get data of UI Events collection based on user id
+        // get data of UI Events collection based on user id
         List<QueryDocumentSnapshot> userUiEventInfoById = new ArrayList<>(firebaseReader.getUiEventInfoByUserId(userId));
         for (QueryDocumentSnapshot doc : userUiEventInfoById) {
             writeUserInfoToCsv(doc, userId);
@@ -126,7 +115,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByIdForDeviceInfo(String userId) {
-        //get data of Device info  collection based on user id
+        // get data of Device info  collection based on user id
         List<QueryDocumentSnapshot> userDeviceInfoById = new ArrayList<>(firebaseReader.getDeviceInfoByUserId(userId));
         for (QueryDocumentSnapshot doc : userDeviceInfoById) {
             writeUserInfoToCsv(doc, userId);
@@ -134,7 +123,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByDateRangeForPlayerEvent(String userId, long millisStart, long millisEnd) {
-        //get data of Player Events collection based on date range and user id
+        // get data of Player Events collection based on date range and user id
         List<QueryDocumentSnapshot> userByDateRangeForPlayerEvent = new ArrayList<>(firebaseReader.getInfoByDateRangeForPlayerEventInfo(userId, millisStart, millisEnd));
         for (QueryDocumentSnapshot doc : userByDateRangeForPlayerEvent) {
             writeUserInfoToCsv(doc, userId);
@@ -142,7 +131,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByIdDateRangeForUiEvent(String userId, long millisStart, long millisEnd) {
-        //get data of Ui Events info collection on date range and user id
+        // get data of Ui Events info collection on date range and user id
         List<QueryDocumentSnapshot> userByIdDateRangeForUiEvent = new ArrayList<>(firebaseReader.getInfoByDateRangeForUiEventInfo(userId, millisStart, millisEnd));
         for (QueryDocumentSnapshot doc : userByIdDateRangeForUiEvent) {
             writeUserInfoToCsv(doc, userId);
@@ -150,7 +139,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void processUserByIdDateRangeForDeviceInfo(String userId, long millisStart, long millisEnd) {
-        //get data of device info collection on date range and user id
+        // get data of device info collection on date range and user id
         List<QueryDocumentSnapshot> userByIdDateRangeForUiEvent = new ArrayList<>(firebaseReader.getInfoByDateRangeForUiEventInfo(userId, millisStart, millisEnd));
         for (QueryDocumentSnapshot doc : userByIdDateRangeForUiEvent) {
             writeUserInfoToCsv(doc, userId);
@@ -158,7 +147,7 @@ public class MuserMusicDataAnalysisManager {
     }
 
     private void writeUserInfoToCsv(QueryDocumentSnapshot doc, String userId) {
-        //Write the Music Analysis Model to CSV
+        // Write the Music Analysis Model to CSV
         MusicAnalysisModel mam = new MusicAnalysisModel(doc.toObject(MusicAnalysisModel.class), doc.getId(), userId);
         musicAnalysisList.add(mam);
         csvFileWriter.appendAllToCsv(musicAnalysisList);
