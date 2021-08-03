@@ -18,7 +18,9 @@ package edu.usf.sas.pal.muser.model;
 
 import java.util.List;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel.AudioData.VolumeData;
+import edu.usf.sas.pal.muser.utils.DateTimeUtil;
 import edu.usf.sas.pal.muser.utils.StringUtils;
+import org.joda.time.DateTime;
 
 public class MusicAnalysisModel {
 
@@ -1021,6 +1023,7 @@ public class MusicAnalysisModel {
             "record_id",
             "player_event_type",
             "ui_event_type",
+            "event_current_time_in_iso",
             "event_current_time_in_milliseconds",
             "event_nano_time",
             "event_seek_position_in_milliseconds",
@@ -1222,6 +1225,7 @@ public class MusicAnalysisModel {
                 recordId,
                 eventPlayerType,
                 eventUiType,
+                DateTimeUtil.getDateAndTimeFromMillis(eventCurrentTimeMs),
                 StringUtils.valueOf(eventCurrentTimeMs),
                 StringUtils.valueOf(eventNanoTime),
                 StringUtils.valueOf(eventSeekPositionMs),
