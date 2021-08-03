@@ -26,7 +26,14 @@ java -jar target/muser-0.0.1-SNAPSHOT.jar -keyFile /path/to/file/fileName.json
 
 ### Additional Optional Command Line Arguments
 
-`-userId <userId>` Takes a user id as an argument and performs the analysis for that specific user. Example usage: `-userId abcdef`.
+* `-userId <userId>` Takes a user id as an argument and performs the analysis for that specific user. Example usage:
+`-userId abcdef`.
+* `-startDate <mm-dd-yyyy> -endDate <mm-dd-yyyy>` Takes two dates as argument and performs the analysis for activities in
+  the specific date range. The filter will assume the dates in the UTC timezone. Example usage:
+  `-startDate 05-05-2021 -endDate 07-15-2021` will perform the analysis from May 05, 2021 00:00:00 UTC, to July 15, 2021 00:00:00 UTC.
+    ```
+    Note: The startDate and endDate must be provided together (providing only one results in error).
+    ```
 
 ## License
 

@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2019-2020 University of South Florida
  *
@@ -15,16 +14,34 @@
  * limitations under the License.
  */
 package edu.usf.sas.pal.muser.options;
+
 public class ProgramOptions {
+
     private static ProgramOptions programOptions = null;
 
     private ProgramOptions() {
     }
 
     public static final String KEY_FILE = "keyFile";
+
     public static final String USER_ID = "userId";
+
+    // Start date option to perform a document search
+    public static final String START_DATE = "startDate";
+
+    // End date option to perform a document search
+    public static final String END_DATE = "endDate";
+
+    // Time zone used to parse the date parameters
+    public  static final String TIME_ZONE = "Etc/UTC";
+
     private String fileKeyPath;
+
     private String userId;
+
+    private long startDate = 0;
+
+    private long endDate = 0;
 
     public static ProgramOptions getInstance() {
         if (programOptions == null) {
@@ -48,6 +65,24 @@ public class ProgramOptions {
 
     public ProgramOptions setUserId(String userId) {
         this.userId = userId;
+        return this;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public ProgramOptions setStartDate(long startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public long getEndDate() {
+        return endDate;
+    }
+
+    public ProgramOptions setEndDate(long endDate) {
+        this.endDate = endDate;
         return this;
     }
 }
