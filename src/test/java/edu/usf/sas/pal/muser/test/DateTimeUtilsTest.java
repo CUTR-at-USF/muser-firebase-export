@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests utilities for date-time validation
@@ -39,6 +40,28 @@ public class DateTimeUtilsTest {
         assertFalse(DateTimeUtil.validateDatesProvided(dateRange6[0], dateRange6[1]));
         assertFalse(DateTimeUtil.validateDatesProvided(dateRange7[0], dateRange7[1]));
 
+    }
+
+    /**
+     * Given a time stamp in milliseconds, verify that the function
+     * getDateAndTimeFromMillis return a UTC date formatted in the format
+     * "yyyy-MM-dd'T'HH:mm:ss'Z'"
+     */
+    @Test
+    public  void testGetDateAndTimeFromMillis() {
+        // UTC time: Friday, August 9, 2019 8:29:42.198 PM
+        long testDate1 = 1565382582198L;
+        // UTC time: Friday, August 9, 2019 11:49:42.198 PM
+        long testDate2 = 1565394582198L;
+        // UTC time: Saturday, August 10, 2019 7:09:52.198 AM
+        long testDate3 = 1565420992198L;
+        // UTC time: Sunday, August 11, 2019 3:36:22.198 AM
+        long testDate4 = 1565494582198L;
+
+        assertEquals("2019-08-09T20:29:42.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate1));
+        assertEquals("2019-08-09T23:49:42.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate2));
+        assertEquals("2019-08-10T07:09:52.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate3));
+        assertEquals("2019-08-11T03:36:22.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate4));
     }
 
 }

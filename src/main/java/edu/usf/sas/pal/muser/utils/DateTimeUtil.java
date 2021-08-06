@@ -1,5 +1,7 @@
 package edu.usf.sas.pal.muser.utils;
 
+import java.time.Instant;
+
 public class DateTimeUtil {
 
     /**
@@ -13,6 +15,19 @@ public class DateTimeUtil {
             if (dateStartMillis < dateEndMillis) return true;
             else return false;
         } else return false;
+    }
+
+    /**
+     * Gets the time in the string ISO 8601 UTC format from the provided epoch time
+     * @param millis
+     * @return the time in the string ISO 8601 UTC format from the provided epoch time
+     */
+    public static String getDateAndTimeFromMillis(Long millis) {
+        if (millis == null) {
+            return "";
+        } else {
+            return Instant.ofEpochMilli(millis).toString();
+        }
     }
 
 }

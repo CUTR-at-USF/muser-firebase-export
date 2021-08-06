@@ -18,7 +18,9 @@ package edu.usf.sas.pal.muser.model;
 
 import java.util.List;
 import edu.usf.sas.pal.muser.model.MusicAnalysisModel.AudioData.VolumeData;
+import edu.usf.sas.pal.muser.utils.DateTimeUtil;
 import edu.usf.sas.pal.muser.utils.StringUtils;
+import org.joda.time.DateTime;
 
 public class MusicAnalysisModel {
 
@@ -1073,6 +1075,7 @@ public class MusicAnalysisModel {
             "device_info_sdk_version_int",
             "device_info_talk_back_enabled",
             "device_info_timestamp",
+            "event_current_time_in_iso_utc"
     };
 
     public Long getSeekPositionMs() {
@@ -1273,7 +1276,8 @@ public class MusicAnalysisModel {
                 deviceInfoSdkVersion,
                 StringUtils.valueOf(deviceInfoSdkVersionInt),
                 StringUtils.valueOf(deviceInfoTalkBackEnabled),
-                deviceInfoTimestamp
+                deviceInfoTimestamp,
+                DateTimeUtil.getDateAndTimeFromMillis(eventCurrentTimeMs)
         };
     }
 }
