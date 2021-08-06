@@ -58,10 +58,10 @@ public class DateTimeUtilsTest {
         // UTC time: Sunday, August 11, 2019 3:36:22.198 AM
         long testDate4 = 1565494582198L;
 
-        assertEquals("2019-08-09T20:29:42Z", DateTimeUtil.getDateAndTimeFromMillis(testDate1));
-        assertEquals("2019-08-09T23:49:42Z", DateTimeUtil.getDateAndTimeFromMillis(testDate2));
-        assertEquals("2019-08-10T07:09:52Z", DateTimeUtil.getDateAndTimeFromMillis(testDate3));
-        assertEquals("2019-08-11T03:36:22Z", DateTimeUtil.getDateAndTimeFromMillis(testDate4));
+        assertEquals("2019-08-09T20:29:42.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate1));
+        assertEquals("2019-08-09T23:49:42.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate2));
+        assertEquals("2019-08-10T07:09:52.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate3));
+        assertEquals("2019-08-11T03:36:22.198Z", DateTimeUtil.getDateAndTimeFromMillis(testDate4));
     }
 
 }
