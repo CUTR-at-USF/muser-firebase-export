@@ -1,8 +1,6 @@
 package edu.usf.sas.pal.muser.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.Instant;
 
 public class DateTimeUtil {
 
@@ -25,12 +23,11 @@ public class DateTimeUtil {
      * @return the time in the string ISO 8601 UTC format from the provided epoch time
      */
     public static String getDateAndTimeFromMillis(Long millis) {
-        if (millis == null) return "";
-        Date date = new Date(millis);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        // Set time zone to GMT to obtain timestamp as UTC date
-        sdf.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-        return sdf.format(date);
+        if (millis == null) {
+            return "";
+        } else {
+            return Instant.ofEpochMilli(millis).toString();
+        }
     }
 
 }
