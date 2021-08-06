@@ -1023,7 +1023,6 @@ public class MusicAnalysisModel {
             "record_id",
             "player_event_type",
             "ui_event_type",
-            "event_current_time_in_iso",
             "event_current_time_in_milliseconds",
             "event_nano_time",
             "event_seek_position_in_milliseconds",
@@ -1076,6 +1075,7 @@ public class MusicAnalysisModel {
             "device_info_sdk_version_int",
             "device_info_talk_back_enabled",
             "device_info_timestamp",
+            "event_current_time_in_iso_utc"
     };
 
     public Long getSeekPositionMs() {
@@ -1225,7 +1225,6 @@ public class MusicAnalysisModel {
                 recordId,
                 eventPlayerType,
                 eventUiType,
-                DateTimeUtil.getDateAndTimeFromMillis(eventCurrentTimeMs),
                 StringUtils.valueOf(eventCurrentTimeMs),
                 StringUtils.valueOf(eventNanoTime),
                 StringUtils.valueOf(eventSeekPositionMs),
@@ -1277,7 +1276,8 @@ public class MusicAnalysisModel {
                 deviceInfoSdkVersion,
                 StringUtils.valueOf(deviceInfoSdkVersionInt),
                 StringUtils.valueOf(deviceInfoTalkBackEnabled),
-                deviceInfoTimestamp
+                deviceInfoTimestamp,
+                DateTimeUtil.getDateAndTimeFromMillis(eventCurrentTimeMs)
         };
     }
 }
